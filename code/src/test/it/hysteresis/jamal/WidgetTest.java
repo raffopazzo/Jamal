@@ -128,5 +128,33 @@ public class WidgetTest extends JamalTestCase {
       assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testAppendChildWidget() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div>"+
+                                           "<a href=\"#\">"+
+                                           "<div class=\"jamal-widget\"/>"+
+                                           "</a>"+
+                                           "</div>");
+    // exercise
+    _widget.div().a("#").append(new Widget());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testAppendChildrenWidgets() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div>"+
+                                           "<a href=\"#\">"+
+                                           "<div class=\"jamal-widget\"/>"+
+                                           "<div class=\"jamal-widget\"/>"+
+                                           "</a>"+
+                                           "</div>");
+    // exercise
+    _widget.div().a("#").append(new Widget(),
+                                new Widget());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 

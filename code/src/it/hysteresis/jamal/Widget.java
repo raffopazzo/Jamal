@@ -89,8 +89,15 @@ public class Widget {
     return this;
   }
 
-  public Widget append(Widget content) {
-    _children.add(content);
+  public Widget append(Widget widget) {
+    _children.add(widget);
+    return this;
+  }
+
+  public Widget append(Widget...widgets) {
+    for (Widget w: widgets) {
+      _children.add(w); 
+    }
     return this;
   }
 
@@ -197,10 +204,6 @@ public class Widget {
     }
   }
 
-//  protected Element createRoot(Document document, String tag) {
-//    return (Element)document.appendChild(createElement(document, tag));
-//  }
-
   private Document renderDocument() throws Exception {
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder docBuilder = factory.newDocumentBuilder();
@@ -209,12 +212,6 @@ public class Widget {
     root.appendChild(render(document));
     return document;
   }
-
-//  protected Element initDocument(Document document) {
-//    Element root = createRoot(document, _tag);
-//    root.setAttribute(HTML_CLASS, JAMAL_CLASS_WIDGET);
-//    return root;
-//  }
 
   protected Node prepareDocument(Document document) {
     /* The root of Widgets is the documents itself */
