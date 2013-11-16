@@ -16,14 +16,22 @@
 package it.hysteresis.jamal;
 
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
@@ -46,74 +54,53 @@ public class Widget {
   static public final String JAMAL_CLASS_WIDGET = "jamal-widget";
 
   protected Dictionary _i18n;
-  protected Document _document;
-  protected Element _body;
+  protected String _tag;
+
+  protected LinkedList<String> _classNames;
+  protected LinkedList<Widget> _children;
+  protected HashMap<String, String> _attributes;
+  protected String _textContent;
+
+  protected Widget(Dictionary dictionary, String tag) {
+    _i18n = dictionary;
+    _classNames = new LinkedList<String>();
+    _children = new LinkedList<Widget>();
+    _attributes = new HashMap<String, String>();
+    _tag = tag;
+  }
+
+  public Widget(Dictionary dictionary) {
+    this(dictionary, HTML_DIV);
+    addClassName(JAMAL_CLASS_WIDGET);
+  }
 
   public Widget() {
     this(null);
   }
 
-  public Widget(Dictionary dictionary) {
-    try {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder docBuilder = factory.newDocumentBuilder();
-      _document = docBuilder.newDocument();
-      init();
-    } catch (Exception e) {
-      throw new RuntimeException("Can't build document",e);
-    }
-    _i18n = dictionary;
-  }
-
-  private Widget(Widget parent, Element element) {
-    _document = parent._document;
-    _i18n = parent._i18n;
-    _body = element;
-  }
-
-  protected void init() {
-    _body = createRoot(HTML_DIV);
-    _body.setAttribute(HTML_CLASS, JAMAL_CLASS_WIDGET);
-  }
-
-  protected Element createElement(String tag) {
-    return _document.createElement(tag);
-  }
-
-  protected Element createRoot(String tag) {
-    return (Element)_document.appendChild(createElement(tag));
-  }
-
-  protected Element appendElement(String tag) {
-    return (Element)_body.appendChild(createElement(tag));
-  }
-
   private Widget createChildWidget(String tag) {
-    return new Widget(this, appendElement(tag));
+    Widget child = new Widget(_i18n, tag);
+    _children.add(child);
+    return child;
   }
 
   public Widget addClassName(String clazz) {
-    String current = _body.getAttribute(HTML_CLASS);
-    if (current.isEmpty()) {
-      _body.setAttribute(HTML_CLASS, clazz);
-    } else {
-      _body.setAttribute(HTML_CLASS, current + " " + clazz); 
-    }
+    _classNames.add(clazz);
     return this;
   }
 
   public Widget append(Widget content) {
-    _body.appendChild(content._body);
+    _children.add(content);
     return this;
   }
 
   public Widget setAttribute(String name, String value) {
-    _body.setAttribute(name, value);
+    _attributes.put(name, value);
     return this;
   }
 
   public Widget setTextContent(String text) {
-    _body.setTextContent(text);
+    _textContent = text;
     return this;
   }
 
@@ -195,17 +182,74 @@ public class Widget {
   @Override
   public String toString() {
     try {
+      Document document = renderDocument();
       TransformerFactory factory = TransformerFactory.newInstance();
       Transformer transformer = factory.newTransformer();
       transformer.setOutputProperty(OutputKeys.METHOD, "xml");
       transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-      DOMSource source = new DOMSource(_document);
+      DOMSource source = new DOMSource(document);
       StringWriter writer = new StringWriter();
       transformer.transform(source, new StreamResult(writer));
       String result = writer.toString();
       return result;
     } catch (Exception e) {
       throw new RuntimeException("Can't render HTML document", e);
+    }
+  }
+
+//  protected Element createRoot(Document document, String tag) {
+//    return (Element)document.appendChild(createElement(document, tag));
+//  }
+
+  private Document renderDocument() throws Exception {
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder docBuilder = factory.newDocumentBuilder();
+    Document document = docBuilder.newDocument();
+    Node root = prepareDocument(document);
+    root.appendChild(render(document));
+    return document;
+  }
+
+//  protected Element initDocument(Document document) {
+//    Element root = createRoot(document, _tag);
+//    root.setAttribute(HTML_CLASS, JAMAL_CLASS_WIDGET);
+//    return root;
+//  }
+
+  protected Node prepareDocument(Document document) {
+    /* The root of Widgets is the documents itself */
+    return document;
+  }
+
+  private Element render(Document document) {
+    Element element = document.createElement(_tag);
+    element.setTextContent(_textContent);
+    renderAttributes(element);
+    renderClassNames(element);
+    renderChildWidgets(document, element);
+    return element;
+  }
+
+  private void renderAttributes(Element element) {
+    for (Map.Entry<String, String> a: _attributes.entrySet()) {
+      element.setAttribute(a.getKey(), a.getValue());
+    }
+  }
+
+  private void renderClassNames(Element element) {
+    Iterator<String> it = _classNames.iterator();
+    if (it.hasNext()) {
+      String clazz = it.next();
+      while (it.hasNext()) {
+        clazz += " " + it.next();
+      }
+      element.setAttribute(HTML_CLASS, clazz);
+    }
+  }
+
+  private void renderChildWidgets(Document document, Element parent) {
+    for (Widget w: _children) {
+      parent.appendChild(w.render(document)); 
     }
   }
 

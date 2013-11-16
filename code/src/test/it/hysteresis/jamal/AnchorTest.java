@@ -92,5 +92,6 @@ public class AnchorTest extends JamalTestCase {
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
+
 }
 
