@@ -51,6 +51,8 @@ public class Widget {
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
   static public final String JAMAL_CLASS_BUTTON_ICON = "jamal-button-icon";
   static public final String JAMAL_CLASS_BUTTON_TEXT = "jamal-button-text";
+  static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
+  static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
   static public final String JAMAL_CLASS_WIDGET = "jamal-widget";
 
   protected Dictionary _i18n;
@@ -78,26 +80,17 @@ public class Widget {
     this(null);
   }
 
-  private Widget createChildWidget(String tag) {
-    Widget child = new Widget(_i18n, tag);
-    _children.add(child);
-    return child;
+  private Widget append(String tag) {
+    return append(new Widget(_i18n, tag));
+  }
+
+  protected <T extends Widget> T append(T widget) {
+    _children.add(widget);
+    return widget;
   }
 
   public Widget addClassName(String clazz) {
     _classNames.add(clazz);
-    return this;
-  }
-
-  public Widget append(Widget widget) {
-    _children.add(widget);
-    return this;
-  }
-
-  public Widget append(Widget...widgets) {
-    for (Widget w: widgets) {
-      _children.add(w); 
-    }
     return this;
   }
 
@@ -116,7 +109,7 @@ public class Widget {
   }
 
   public Widget a() {
-    return createChildWidget(HTML_A);
+    return append(HTML_A);
   }
 
   public Widget a(String href) {
@@ -130,6 +123,10 @@ public class Widget {
 
   public Widget a(String href, Enum label) {
     return a(href, _i18n.getLabel(label));
+  }
+
+  public Widget a(String href, Widget content) {
+    return a(href).append(content);
   }
 
   public Widget button(String href) {
@@ -169,12 +166,12 @@ public class Widget {
   }
 
   public Widget details() {
-    return createChildWidget(HTML_DETAILS);
+    return append(HTML_DETAILS);
   }
 
   public Widget details(String summary) {
     Widget details = details();
-    details.createChildWidget(HTML_SUMMARY).setTextContent(summary);
+    details.append(HTML_SUMMARY).setTextContent(summary);
     return details;
   }
 
@@ -183,7 +180,11 @@ public class Widget {
   }
 
   public Widget div() {
-    return createChildWidget(HTML_DIV);
+    return append(HTML_DIV);
+  }
+
+  public FlowLayout flowLayout() {
+    return append(new FlowLayout(_i18n));
   }
 
   @Override
