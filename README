@@ -1,0 +1,10 @@
+It now seems we're in the framework era. Everybody comes up with a new MVC Web
+Framework and the Views are always the same: some HTML template with private
+element to provide basic programming logic to render the dynamic content...
+They all always suffer of the same 2 issues: Web Pages are neither debuggable
+nor testable.
+
+Jamal is not a full MVC Web Framework; it's just a Java library with a lot of
+syntactic sugar to programmatically generate XHTML pages on server side.
+Being plain Java code it's fully debuggable (just put a breakpoint wherever you
+want) and even fully testable (for those who will) !

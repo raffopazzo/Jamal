@@ -1,0 +1,89 @@
+<!--
+  Copyright 2013 Rossi Raffaele <rossi.raffaele@gmail.com>
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<project default="unit">
+  <property name="build.dir" value="classes"/>
+  <property name="lib.dir" value="lib"/>
+  <property name="cfg.dir" value="config"/>
+  <property name="deploy.dir" value="./"/>
+  <property name="jamal.jar" value="${deploy.dir}/jamal.jar"/>
+  <property name="src.dir" value="src"/>
+  <property name="test.pkg" value="test"/>
+
+  <!-- classpath -->
+  <path id="classpath">
+    <fileset dir="${lib.dir}"/>
+  </path>
+
+  <!-- clean -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete file="${jamal.jar}"/>
+  </target>
+
+  <!-- compile -->
+  <target name="compile">
+    <mkdir dir="${build.dir}"/>
+    <javac classpathref="classpath"
+           srcdir="${src.dir}"
+           destdir="${build.dir}"
+           debug="true"
+           includeantruntime="false"/>
+  </target>
+
+  <!-- jar -->
+  <target name="jar" depends="compile">
+    <jar destfile="${jamal.jar}"
+          basedir="${build.dir}">
+      <exclude name="${test.pkg}/**"/>
+    </jar>
+  </target>
+
+  <!-- unit -->
+  <target name="unit" depends="compile">
+    <junit printsummary="yes" haltonfailure="yes">
+      <classpath path="${build.dir}"/>
+      <classpath refid="classpath"/>
+      <batchtest>
+        <fileset dir="${build.dir}">
+          <include name="${test.pkg}/**/*Test.class"/>
+        </fileset>
+      </batchtest>
+    <formatter type="plain" usefile="no"/>
+    </junit>
+  </target>
+
+  <!-- test -->
+  <target name="test" depends="compile">
+    <junit printsummary="yes" haltonfailure="yes">
+      <classpath path="${build.dir}"/>
+      <classpath refid="classpath"/>
+      <test name="${test}"/>
+    <formatter type="plain" usefile="no"/>
+    </junit>
+  </target>
+
+  <!-- test-debug -->
+  <target name="test-debug" depends="compile">
+    <junit printsummary="yes" haltonfailure="yes" fork="yes">
+      <jvmarg value="-Xdebug"/>
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"/>
+      <classpath path="${build.dir}"/>
+      <classpath refid="classpath"/>
+      <test name="${test}"/>
+    <formatter type="plain" usefile="no"/>
+    </junit>
+  </target>
+</project>
