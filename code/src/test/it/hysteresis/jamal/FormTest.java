@@ -176,5 +176,126 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCreateEmptySelect() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateSelectWithOption() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<option value=\"dummy-2\">"+
+                                          "dummy-3"+
+                                          "</option>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1").option("dummy-2", "dummy-3");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateSelectWithOptionFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<option value=\"dummy-2\">"+
+                                          "LABEL_0"+
+                                          "</option>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1").option("dummy-2", FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateSelectWithOptionGroup() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<optgroup label=\"dummy-2\">"+
+                                          "<option value=\"dummy-3\">"+
+                                          "dummy-4"+
+                                          "</option>"+
+                                          "</optgroup>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1").optgroup("dummy-2").option("dummy-3",
+                                                                "dummy-4");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateSelectWithOptionGroupFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<optgroup label=\"LABEL_0\">"+
+                                          "<option value=\"dummy-2\">"+
+                                          "dummy-3"+
+                                          "</option>"+
+                                          "</optgroup>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1")
+                  .optgroup(FakeEnums.LABEL_0)
+                  .option("dummy-2", "dummy-3");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateSelectWithOptionSelected() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<option selected=\"selected\""+
+                                          "        value=\"dummy-2\">"+
+                                          "dummy-3"+
+                                          "</option>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1")
+                  .option("dummy-2", "dummy-3").select();
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testDeselectOptoin() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<select name=\"dummy-1\">"+
+                                          "<option value=\"dummy-2\">"+
+                                          "dummy-3"+
+                                          "</option>"+
+                                          "</select>"+
+                                          "</form>");
+    // exercise
+    _widget.form().select("dummy-1")
+                  .option("dummy-2", "dummy-3").select().setSelected(false);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateTextArea() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<textarea name=\"dummy\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().textarea("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
 }
 

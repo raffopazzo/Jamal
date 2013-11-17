@@ -58,7 +58,12 @@ public class Widget<T extends Widget> {
   static public final String HTML_INPUT_VALUE = "value";
   static public final String HTML_LABEL = "label";
   static public final String HTML_LABEL_FOR = "for";
+  static public final String HTML_OPTGROUP = "optgroup";
+  static public final String HTML_OPTION = "option";
+  static public final String HTML_OPTION_SELECTED = "selected";
+  static public final String HTML_SELECT = "select";
   static public final String HTML_SUMMARY = "summary";
+  static public final String HTML_TEXTAREA = "textarea";
 
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
   static public final String JAMAL_CLASS_BUTTON_ICON = "jamal-button-icon";
@@ -106,6 +111,11 @@ public class Widget<T extends Widget> {
 
   public T addClassName(String clazz) {
     _classNames.add(clazz);
+    return _this;
+  }
+
+  public T removeAttribute(String name) {
+    _attributes.remove(name);
     return _this;
   }
 
@@ -230,6 +240,27 @@ public class Widget<T extends Widget> {
     return label(inputId, _i18n.getLabel(text));
   }
 
+  public Widget optgroup(String label) {
+    return append(HTML_OPTGROUP).setAttribute(HTML_LABEL, label);
+  }
+
+  public Widget optgroup(Enum label) {
+    return optgroup(_i18n.getLabel(label));
+  }
+
+  public Option option(String value, String text) {
+    return append(new Option(_i18n)).setAttribute(HTML_INPUT_VALUE, value)
+                                    .setTextContent(text);
+  }
+
+  public Option option(String value, Enum text) {
+    return option(value, _i18n.getLabel(text));
+  }
+
+  public Widget select(String name) {
+    return append(HTML_SELECT).setAttribute(HTML_INPUT_NAME, name);
+  }
+
   public Input submit() {
     return append(new Input(_i18n)).setType(Input.Type.submit);
   }
@@ -240,6 +271,10 @@ public class Widget<T extends Widget> {
 
   public Input submit(Enum text) {
     return submit(_i18n.getLabel(text));
+  }
+
+  public Widget textarea(String name) {
+    return append(HTML_TEXTAREA).setAttribute(HTML_INPUT_NAME, name);
   }
 
   @Override
