@@ -11,9 +11,9 @@ public class ExampleWebPage extends WebPage {
     addCss(CSS_DEFAULT);
     addScript(JS_DEFAULT);
 
-    div().setClassName(CLASS_GREETINGS)
-      .p("Hello world").setId(ID_GREETINGS)
-                       .setClassName(CLASS_GREETINGS);
+    div().addClassName("x")
+      .a("www.google.com", "Hello, world").setId(ID_GREETINGS)
+                                          .addClassName(CLASS_GREETINGS);
   }
 
 }
