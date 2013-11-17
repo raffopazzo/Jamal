@@ -49,6 +49,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_DETAILS = "details";
   static public final String HTML_DETAILS_OPEN = "open";
   static public final String HTML_FORM = "form";
+  static public final String HTML_FORM_ACTION = "action";
   static public final String HTML_FORM_METHOD = "method";
   static public final String HTML_INPUT = "input";
   static public final String HTML_INPUT_NAME = "name";

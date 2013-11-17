@@ -140,5 +140,15 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testSetAction() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\""+
+                                          "      action=\"dummy\"/>");
+    // exercise
+    _widget.form().setAction("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 

@@ -32,4 +32,7 @@ public class Form extends Widget<Form> {
     return setAttribute(Widget.HTML_FORM_METHOD, method.toString());
   }
 
+  public Form setAction(String url) {
+    return setAttribute(Widget.HTML_FORM_ACTION, url);
+  }
 }
