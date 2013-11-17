@@ -46,6 +46,14 @@ public class Widget {
   static public final String HTML_A_TARGET_SELF = "_self";
   static public final String HTML_DIV = "div";
   static public final String HTML_DETAILS = "details";
+  static public final String HTML_FORM = "form";
+  static public final String HTML_FORM_METHOD = "method";
+  static public final String HTML_FORM_METHOD_GET = "get";
+  static public final String HTML_FORM_METHOD_POST = "post";
+  static public final String HTML_INPUT = "input";
+  static public final String HTML_INPUT_TYPE = "type";
+  static public final String HTML_INPUT_TYPE_SUBMIT = "submit";
+  static public final String HTML_INPUT_VALUE = "value";
   static public final String HTML_SUMMARY = "summary";
 
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
@@ -185,6 +193,24 @@ public class Widget {
 
   public FlowLayout flowLayout() {
     return append(new FlowLayout(_i18n));
+  }
+
+  public Widget form() {
+    return append(HTML_FORM).setAttribute(HTML_FORM_METHOD,
+                                          HTML_FORM_METHOD_POST);
+  }
+
+  public Widget submit() {
+    return append(HTML_INPUT).setAttribute(HTML_INPUT_TYPE,
+                                           HTML_INPUT_TYPE_SUBMIT);
+  }
+
+  public Widget submit(String text) {
+    return submit().setAttribute(HTML_INPUT_VALUE, text);
+  }
+
+  public Widget submit(Enum text) {
+    return submit(_i18n.getLabel(text));
   }
 
   @Override
