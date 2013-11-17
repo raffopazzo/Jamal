@@ -26,7 +26,7 @@ import org.w3c.dom.Node;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class WebPage extends Widget {
+public class WebPage extends Widget<WebPage> {
 
   static public final String HTML5_DECLARATION = "<!DOCTYPE html>";
   static public final String HTML = "html";

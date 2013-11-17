@@ -17,18 +17,30 @@ package it.hysteresis.jamal;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class FlowLayout extends Widget<FlowLayout> {
+public class Input extends Widget<Input> {
 
-  protected FlowLayout(Dictionary i18n) {
-    super(i18n, HTML_DIV);
-    addClassName(JAMAL_CLASS_LAYOUT_FLOW);
+  static public enum Type {
+    submit;
   }
 
-  public FlowLayout addWidget(Widget widget) {
-    Widget layoutItem = div().addClassName(JAMAL_CLASS_LAYOUT_ITEM);
-    layoutItem.append(widget);
-    return this;
+  protected Input(Dictionary i18n) {
+    super(i18n, HTML_INPUT);
+  }
+
+  public Input setName(String name) {
+    return setAttribute(Widget.HTML_INPUT_NAME, name);
+  }
+
+  public Input setType(Type type) {
+    return setAttribute(Widget.HTML_INPUT_TYPE, type.toString());
+  }
+
+  public Input setValue(String value) {
+    return setAttribute(Widget.HTML_INPUT_VALUE, value);
+  }
+
+  public Input setValue(Enum value) {
+    return setAttribute(Widget.HTML_INPUT_VALUE, value);
   }
 
 }
-

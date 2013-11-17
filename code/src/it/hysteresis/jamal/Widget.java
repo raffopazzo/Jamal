@@ -33,9 +33,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+import it.hysteresis.jamal.Form.Method;
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class Widget {
+public class Widget<T extends Widget> {
 
   static public final String HTML_CLASS = "class";
   static public final String HTML_ID = "id";
@@ -46,10 +47,9 @@ public class Widget {
   static public final String HTML_A_TARGET_SELF = "_self";
   static public final String HTML_DIV = "div";
   static public final String HTML_DETAILS = "details";
+  static public final String HTML_DETAILS_OPEN = "open";
   static public final String HTML_FORM = "form";
   static public final String HTML_FORM_METHOD = "method";
-  static public final String HTML_FORM_METHOD_GET = "get";
-  static public final String HTML_FORM_METHOD_POST = "post";
   static public final String HTML_INPUT = "input";
   static public final String HTML_INPUT_NAME = "name";
   static public final String HTML_INPUT_TYPE = "type";
@@ -72,12 +72,15 @@ public class Widget {
   protected HashMap<String, String> _attributes;
   protected String _textContent;
 
+  protected T _this;
+
   protected Widget(Dictionary dictionary, String tag) {
     _i18n = dictionary;
     _classNames = new LinkedList<String>();
     _children = new LinkedList<Widget>();
     _attributes = new HashMap<String, String>();
     _tag = tag;
+    _this = (T)this;
   }
 
   public Widget(Dictionary dictionary) {
@@ -89,72 +92,79 @@ public class Widget {
     this(null);
   }
 
-  private Widget append(String tag) {
+  protected Widget append(String tag) {
     return append(new Widget(_i18n, tag));
   }
 
-  protected <T extends Widget> T append(T widget) {
+  protected <W extends Widget> W append(W widget) {
     _children.add(widget);
     return widget;
   }
 
-  public Widget addClassName(String clazz) {
+  public T addClassName(String clazz) {
     _classNames.add(clazz);
-    return this;
+    return _this;
   }
 
-  public Widget setAttribute(String name, String value) {
+  public T setAttribute(String name, String value) {
     _attributes.put(name, value);
-    return this;
+    return _this;
   }
 
-  public Widget setTextContent(String text) {
+  public T setAttribute(String name, Enum value) {
+    _attributes.put(name, _i18n.getLabel(value));
+    return _this;
+  }
+
+  public T setTextContent(String text) {
     _textContent = text;
-    return this;
+    return _this;
   }
 
-  public Widget setId(String id) {
+  public T setId(String id) {
     return setAttribute(HTML_ID, id);
   }
 
-  public Widget a() {
-    return append(HTML_A);
+  public Anchor a() {
+    return append(new Anchor(_i18n));
   }
 
-  public Widget a(String href) {
+  public Anchor a(String href) {
     return a().setAttribute(HTML_A_HREF, href);
   }
 
-  public Widget a(String href, String textContent) {
+  public Anchor a(String href, String textContent) {
     return a().setAttribute(HTML_A_HREF, href)
               .setTextContent(textContent);
   }
 
-  public Widget a(String href, Enum label) {
+  public Anchor a(String href, Enum label) {
     return a(href, _i18n.getLabel(label));
   }
 
-  public Widget a(String href, Widget content) {
-    return a(href).append(content);
+  public Anchor a(String href, Widget content) {
+    Anchor a = a(href);
+    a.append(content);
+    return a;
   }
 
-  public Widget button(String href) {
-    Widget button = a(href).div().addClassName(JAMAL_CLASS_BUTTON);
+  public Anchor button(String href) {
+    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_ICON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_TEXT);
     return button;
   }
 
-  public Widget button(String href, String text) {
-    Widget button = a(href).div().addClassName(JAMAL_CLASS_BUTTON);
+  public Anchor button(String href, String text) {
+    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_ICON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_TEXT)
                 .setTextContent(text);
     return button;
   }
 
-  public Widget button(String href, String icon, String text) {
-    Widget button = a(href).div().addClassName(JAMAL_CLASS_BUTTON);
+  public Anchor button(String href, String icon, String text) {
+    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_ICON)
                 .setTextContent(icon);
     button.div().addClassName(JAMAL_CLASS_BUTTON_TEXT)
@@ -162,29 +172,29 @@ public class Widget {
     return button;
   }
 
-  public Widget button(String href, Enum text) {
+  public Anchor button(String href, Enum text) {
     return button(href, _i18n.getLabel(text));
   }
 
-  public Widget button(String href, Enum icon, Enum text) {
+  public Anchor button(String href, Enum icon, Enum text) {
     return button(href, _i18n.getLabel(icon), _i18n.getLabel(text));
   }
 
-  public Widget button(String href, Enum icon, String text) {
+  public Anchor button(String href, Enum icon, String text) {
     return button(href, _i18n.getLabel(icon), text);
   }
 
-  public Widget details() {
-    return append(HTML_DETAILS);
+  public Details details() {
+    return append(new Details(_i18n));
   }
 
-  public Widget details(String summary) {
-    Widget details = details();
+  public Details details(String summary) {
+    Details details = details();
     details.append(HTML_SUMMARY).setTextContent(summary);
     return details;
   }
 
-  public Widget details(Enum summary) {
+  public Details details(Enum summary) {
     return details(_i18n.getLabel(summary));
   }
 
@@ -196,31 +206,27 @@ public class Widget {
     return append(new FlowLayout(_i18n));
   }
 
-  public Widget form() {
-    return append(HTML_FORM).setAttribute(HTML_FORM_METHOD,
-                                          HTML_FORM_METHOD_POST);
+  public Form form() {
+    return append(new Form(_i18n)).setMethod(Form.Method.post);
   }
 
-  public Widget input(String name) {
-    return append(HTML_INPUT).setAttribute(HTML_INPUT_NAME,
-                                           name);
+  public Input input(String name) {
+    return append(new Input(_i18n)).setName(name);
   }
 
-  public Widget input(String name, String value) {
-    return input(name).setAttribute(HTML_INPUT_VALUE,
-                                    value);
+  public Input input(String name, String value) {
+    return input(name).setValue(value);
   }
 
-  public Widget submit() {
-    return append(HTML_INPUT).setAttribute(HTML_INPUT_TYPE,
-                                           HTML_INPUT_TYPE_SUBMIT);
+  public Input submit() {
+    return append(new Input(_i18n)).setType(Input.Type.submit);
   }
 
-  public Widget submit(String text) {
-    return submit().setAttribute(HTML_INPUT_VALUE, text);
+  public Input submit(String text) {
+    return submit().setValue(text);
   }
 
-  public Widget submit(Enum text) {
+  public Input submit(Enum text) {
     return submit(_i18n.getLabel(text));
   }
 

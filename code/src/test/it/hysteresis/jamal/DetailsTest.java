@@ -48,5 +48,13 @@ public class DetailsTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testOpenDetails() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<details open=\"open\"/>"); 
+    // exercise
+    _widget.details().open();
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
 }
 

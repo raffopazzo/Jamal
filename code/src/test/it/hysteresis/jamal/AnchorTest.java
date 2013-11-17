@@ -15,6 +15,7 @@
 */
 package test.it.hysteresis.jamal;
 
+import it.hysteresis.jamal.Anchor;
 import it.hysteresis.jamal.Widget;
 
 public class AnchorTest extends JamalTestCase {
@@ -93,5 +94,59 @@ public class AnchorTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testChangeHref() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<a href=\"dummy\"/>");
+    // exercise
+    _widget.a("#").setHref("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testChangeTargetToSelf() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   target=\"_self\"/>");
+    // exercise
+    _widget.a("#").setTarget(Anchor.Target._self);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testChangeTargetToBlank() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   target=\"_blank\"/>");
+    // exercise
+    _widget.a("#").setTarget(Anchor.Target._blank);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testAppendChildWidget() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div>"+
+                                           "<a href=\"#\">"+
+                                           "<div class=\"jamal-widget\"/>"+
+                                           "</a>"+
+                                           "</div>");
+    // exercise
+    _widget.div().a("#", new Widget());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testOverwriteHrefEvenWithChildWidget() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div>"+
+                                           "<a href=\"dummy\">"+
+                                           "<div class=\"jamal-widget\"/>"+
+                                           "</a>"+
+                                           "</div>");
+    // exercise
+    _widget.div().a("#", new Widget()).setHref("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
 }
 

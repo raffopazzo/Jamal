@@ -17,18 +17,23 @@ package it.hysteresis.jamal;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class FlowLayout extends Widget<FlowLayout> {
+public class Anchor extends Widget<Anchor> {
 
-  protected FlowLayout(Dictionary i18n) {
-    super(i18n, HTML_DIV);
-    addClassName(JAMAL_CLASS_LAYOUT_FLOW);
+  static public enum Target {
+    _blank,
+    _self;
   }
 
-  public FlowLayout addWidget(Widget widget) {
-    Widget layoutItem = div().addClassName(JAMAL_CLASS_LAYOUT_ITEM);
-    layoutItem.append(widget);
-    return this;
+  protected Anchor(Dictionary i18n) {
+    super(i18n, HTML_A);
+  }
+
+  public Anchor setHref(String href) {
+    return setAttribute(Widget.HTML_A_HREF, href);
+  }
+
+  public Anchor setTarget(Target target) {
+    return setAttribute(Widget.HTML_A_TARGET, target.toString());
   }
 
 }
-

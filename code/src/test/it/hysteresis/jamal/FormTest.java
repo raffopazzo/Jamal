@@ -14,7 +14,7 @@
   limitations under the License.
 */
 package test.it.hysteresis.jamal;
-import it.hysteresis.jamal.Widget;
+import it.hysteresis.jamal.Form;
 
 public class FormTest extends JamalTestCase {
 
@@ -27,12 +27,21 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
-  public void testCreateGetForm() throws Exception {
+  public void testChangeMethodToGet() throws Exception {
     // setup
     final String equivalentHtml= wrapHtml("<form method=\"get\"/>");
     // exercise
-    _widget.form().setAttribute(Widget.HTML_FORM_METHOD,
-                                Widget.HTML_FORM_METHOD_GET);
+    _widget.form().setMethod(Form.Method.get);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testResetMethodToPost() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\"/>");
+    // exercise
+    _widget.form().setMethod(Form.Method.get)
+                  .setMethod(Form.Method.post);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -56,6 +65,18 @@ public class FormTest extends JamalTestCase {
                                           "</form>");
     // exercise
     _widget.form().submit("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testOverwriteSubmitButton() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input type=\"submit\""+
+                                          "       value=\"dummy-2\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().submit("dummy-1").setValue("dummy-2");
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -91,6 +112,30 @@ public class FormTest extends JamalTestCase {
                                           "</form>");
     // exercise
     _widget.form().input("dummy-1", "dummy-2");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testOverwriteInputValue() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy-1\""+
+                                          "       value=\"dummy-3\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input("dummy-1", "dummy-2").setValue("dummy-3");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testOverwriteInputFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy-1\""+
+                                          "       value=\"LABEL_0\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input("dummy-1", "dummy-2").setValue(FakeEnums.LABEL_0);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

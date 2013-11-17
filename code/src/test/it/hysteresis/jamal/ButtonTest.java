@@ -19,11 +19,10 @@ public class ButtonTest extends JamalTestCase {
 
   public void testCreateEmptyButton() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\"/>"+
-                                           "</div>"+
                                            "</a>"); 
     // exercise
     _widget.button("#");
@@ -33,12 +32,11 @@ public class ButtonTest extends JamalTestCase {
 
   public void testSetButtonId() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\""+
-                                           "     id=\"dummy\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   id=\"dummy\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\"/>"+
-                                           "</div>"+
                                            "</a>"); 
     // exercise
     _widget.button("#").setId("dummy");
@@ -48,11 +46,10 @@ public class ButtonTest extends JamalTestCase {
 
   public void testAddButtonClass() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button dummy\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button dummy\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\"/>"+
-                                           "</div>"+
                                            "</a>"); 
     // exercise
     _widget.button("#").addClassName("dummy");
@@ -63,12 +60,11 @@ public class ButtonTest extends JamalTestCase {
 
   public void testCreateButtonWithText() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "dummy"+
-                                           "</div>"+
                                            "</div>"+
                                            "</a>"); 
     // exercise
@@ -79,14 +75,13 @@ public class ButtonTest extends JamalTestCase {
 
   public void testCreateButtonWithTextAndIcon() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "+"+
                                            "</div>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "dummy"+
-                                           "</div>"+
                                            "</div>"+
                                            "</a>"); 
     // exercise
@@ -97,12 +92,11 @@ public class ButtonTest extends JamalTestCase {
 
   public void testRetrieveButtonTextFromDictionary() throws Exception { 
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "LABEL_0"+
-                                           "</div>"+
                                            "</div>"+
                                            "</a>"); 
     // exercise
@@ -113,14 +107,13 @@ public class ButtonTest extends JamalTestCase {
 
   public void testRetrieveButtonTextAndIconFromDictionary() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "LABEL_0"+
                                            "</div>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "LABEL_1"+
-                                           "</div>"+
                                            "</div>"+
                                            "</a>"); 
     // exercise
@@ -131,14 +124,13 @@ public class ButtonTest extends JamalTestCase {
 
   public void testRetrieveButtonIconFromDictionary() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<a href=\"#\">"+
-                                           "<div class=\"jamal-button\">"+
+    final String equivalentHtml = wrapHtml("<a href=\"#\""+
+                                           "   class=\"jamal-button\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "LABEL_0"+
                                            "</div>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "dummy"+
-                                           "</div>"+
                                            "</div>"+
                                            "</a>"); 
     // exercise

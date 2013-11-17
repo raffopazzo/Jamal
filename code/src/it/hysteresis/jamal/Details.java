@@ -17,18 +17,14 @@ package it.hysteresis.jamal;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class FlowLayout extends Widget<FlowLayout> {
+public class Details extends Widget<Details> {
 
-  protected FlowLayout(Dictionary i18n) {
-    super(i18n, HTML_DIV);
-    addClassName(JAMAL_CLASS_LAYOUT_FLOW);
+  protected Details(Dictionary i18n) {
+    super(i18n, HTML_DETAILS);
   }
 
-  public FlowLayout addWidget(Widget widget) {
-    Widget layoutItem = div().addClassName(JAMAL_CLASS_LAYOUT_ITEM);
-    layoutItem.append(widget);
-    return this;
+  public Details open() {
+    return setAttribute(Widget.HTML_DETAILS_OPEN, Widget.HTML_DETAILS_OPEN);
   }
 
-}
-
+};

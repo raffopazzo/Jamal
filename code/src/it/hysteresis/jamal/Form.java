@@ -17,18 +17,19 @@ package it.hysteresis.jamal;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class FlowLayout extends Widget<FlowLayout> {
+public class Form extends Widget<Form> {
 
-  protected FlowLayout(Dictionary i18n) {
-    super(i18n, HTML_DIV);
-    addClassName(JAMAL_CLASS_LAYOUT_FLOW);
+  static public enum Method {
+    get,
+    post;
   }
 
-  public FlowLayout addWidget(Widget widget) {
-    Widget layoutItem = div().addClassName(JAMAL_CLASS_LAYOUT_ITEM);
-    layoutItem.append(widget);
-    return this;
+  protected Form(Dictionary i18n) {
+    super(i18n, HTML_FORM);
+  }
+
+  public Form setMethod(Method method) {
+    return setAttribute(Widget.HTML_FORM_METHOD, method.toString());
   }
 
 }
-
