@@ -51,6 +51,8 @@ public class Widget<T extends Widget> {
   static public final String HTML_FORM = "form";
   static public final String HTML_FORM_ACTION = "action";
   static public final String HTML_FORM_METHOD = "method";
+  static public final String HTML_IMG = "img";
+  static public final String HTML_IMG_SRC = "src";
   static public final String HTML_INPUT = "input";
   static public final String HTML_INPUT_CHECKED = "checked";
   static public final String HTML_INPUT_MAX = "max";
@@ -63,12 +65,17 @@ public class Widget<T extends Widget> {
   static public final String HTML_INPUT_VALUE = "value";
   static public final String HTML_LABEL = "label";
   static public final String HTML_LABEL_FOR = "for";
+  static public final String HTML_LI = "li";
   static public final String HTML_OPTGROUP = "optgroup";
   static public final String HTML_OPTION = "option";
   static public final String HTML_OPTION_SELECTED = "selected";
+  static public final String HTML_P = "p";
+  static public final String HTML_PRE = "pre";
   static public final String HTML_SELECT = "select";
   static public final String HTML_SUMMARY = "summary";
   static public final String HTML_TEXTAREA = "textarea";
+  static public final String HTML_TITLE = "title";
+  static public final String HTML_UL = "ul";
 
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
   static public final String JAMAL_CLASS_BUTTON_ICON = "jamal-button-icon";
@@ -147,13 +154,21 @@ public class Widget<T extends Widget> {
     return _this;
   }
 
+  public T setId(String id) {
+    return setAttribute(HTML_ID, id);
+  }
+
   public T setTextContent(String text) {
     _textContent = text;
     return _this;
   }
 
-  public T setId(String id) {
-    return setAttribute(HTML_ID, id);
+  public T setTitle(String title) {
+    return setAttribute(HTML_TITLE, title);
+  }
+
+  public T setTitle(Enum title) {
+    return setTitle(_i18n.getLabel(title));
   }
 
   public Anchor a() {
@@ -241,6 +256,10 @@ public class Widget<T extends Widget> {
     return append(new Form(_i18n)).setMethod(Form.Method.post);
   }
 
+  public Widget img(String src) {
+    return append(HTML_IMG).setAttribute(HTML_IMG_SRC, src);
+  }
+
   public Input input(Input.Type type, String name) {
     return append(new Input(_i18n)).setType(type).setName(name);
   }
@@ -262,6 +281,10 @@ public class Widget<T extends Widget> {
     return label(inputId, _i18n.getLabel(text));
   }
 
+  public Widget li(String text) {
+    return append(HTML_LI).setTextContent(text);
+  }
+
   public Widget optgroup(String label) {
     return append(HTML_OPTGROUP).setAttribute(HTML_LABEL, label);
   }
@@ -277,6 +300,14 @@ public class Widget<T extends Widget> {
 
   public Option option(String value, Enum text) {
     return option(value, _i18n.getLabel(text));
+  }
+
+  public Widget p(String text) {
+    return append(HTML_P).setTextContent(text);
+  }
+
+  public Widget pre(String text) {
+    return append(HTML_PRE).setTextContent(text);
   }
 
   public Widget select(String name) {
@@ -297,6 +328,10 @@ public class Widget<T extends Widget> {
 
   public Widget textarea(String name) {
     return append(HTML_TEXTAREA).setAttribute(HTML_INPUT_NAME, name);
+  }
+
+  public Widget ul() {
+    return append(HTML_UL);
   }
 
   @Override

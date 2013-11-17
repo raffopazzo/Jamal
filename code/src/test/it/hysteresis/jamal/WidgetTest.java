@@ -125,8 +125,75 @@ public class WidgetTest extends JamalTestCase {
     // exercise
     _widget.div().a("#", FakeEnums.LABEL_0);
     // verify
-      assertEquvalentToHtml(equivalentHtml);
+    assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCreateImgElement() throws Exception { 
+    // setup
+    final String equivalentHtml = wrapHtml("<img src=\"dummy\"/>");
+    // exercise
+    _widget.img("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateParagraphElement() throws Exception { 
+    // setup
+    final String equivalentHtml = wrapHtml("<p>dummy</p>");
+    // exercise
+    _widget.p("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreatePreElement() throws Exception { 
+    // setup
+    final String equivalentHtml = wrapHtml("<pre>dummy</pre>");
+    // exercise
+    _widget.pre("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateEmptyList() throws Exception { 
+    // setup
+    final String equivalentHtml = wrapHtml("<ul/>");
+    // exercise
+    Widget list = _widget.ul();
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateLists() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<ul>"+
+                                           "<li>dummy-1</li>"+
+                                           "<li>dummy-2</li>"+
+                                           "</ul>");
+    // exercise
+    Widget list = _widget.ul();
+    list.li("dummy-1");
+    list.li("dummy-2");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetElementTitle() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div title=\"dummy\"/>");
+    // exercise
+    Widget list = _widget.div().setTitle("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetElementTitleFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div title=\"LABEL_0\"/>");
+    // exercise
+    Widget list = _widget.div().setTitle(FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
 }
 

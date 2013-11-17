@@ -111,13 +111,10 @@ public class WebPage extends Widget<WebPage> {
     }
   }
 
+  @Override
   public WebPage setTitle(String title) {
     _title = title;
     return this;
-  }
-
-  public WebPage setTitle(Enum label) {
-    return setTitle(_i18n.getLabel(label));
   }
 
   public WebPage addMeta(String name, String content) {
