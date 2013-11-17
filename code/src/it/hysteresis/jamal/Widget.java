@@ -51,6 +51,7 @@ public class Widget {
   static public final String HTML_FORM_METHOD_GET = "get";
   static public final String HTML_FORM_METHOD_POST = "post";
   static public final String HTML_INPUT = "input";
+  static public final String HTML_INPUT_NAME = "name";
   static public final String HTML_INPUT_TYPE = "type";
   static public final String HTML_INPUT_TYPE_SUBMIT = "submit";
   static public final String HTML_INPUT_VALUE = "value";
@@ -198,6 +199,16 @@ public class Widget {
   public Widget form() {
     return append(HTML_FORM).setAttribute(HTML_FORM_METHOD,
                                           HTML_FORM_METHOD_POST);
+  }
+
+  public Widget input(String name) {
+    return append(HTML_INPUT).setAttribute(HTML_INPUT_NAME,
+                                           name);
+  }
+
+  public Widget input(String name, String value) {
+    return input(name).setAttribute(HTML_INPUT_VALUE,
+                                    value);
   }
 
   public Widget submit() {

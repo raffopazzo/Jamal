@@ -72,5 +72,28 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCreateStandardInput() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateStandardInputWithDefaultValue() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy-1\""+
+                                          "       value=\"dummy-2\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input("dummy-1", "dummy-2");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 
