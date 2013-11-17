@@ -24,16 +24,11 @@ public class Option extends Widget<Option> {
   }
 
   public Option select() {
-    return setAttribute(Widget.HTML_OPTION_SELECTED,
-                        Widget.HTML_OPTION_SELECTED);
+    return setSelected(true);
   }
 
   public Option setSelected(boolean selected) {
-    if (selected) {
-      return select();
-    } else {
-      return removeAttribute(Widget.HTML_OPTION_SELECTED);
-    }
+    return setAttribute(Widget.HTML_OPTION_SELECTED, selected);
   }
 
 }

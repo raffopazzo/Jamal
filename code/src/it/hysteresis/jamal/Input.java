@@ -20,27 +20,59 @@ import it.hysteresis.jamal.i18n.Dictionary;
 public class Input extends Widget<Input> {
 
   static public enum Type {
-    submit;
+    checkbox,
+    date,
+    email,
+    hidden,
+    number,
+    password,
+    submit,
+    text,
+    time;
   }
 
   protected Input(Dictionary i18n) {
     super(i18n, HTML_INPUT);
   }
 
+  public Input setChecked(boolean checked) {
+    return setAttribute(HTML_INPUT_CHECKED, checked);
+  }
+
+  public Input setMax(int max) {
+    return setAttribute(HTML_INPUT_MAX, max);
+  }
+
+  public Input setMin(int min) {
+    return setAttribute(HTML_INPUT_MIN, min);
+  }
+
   public Input setName(String name) {
-    return setAttribute(Widget.HTML_INPUT_NAME, name);
+    return setAttribute(HTML_INPUT_NAME, name);
+  }
+
+  public Input setPlaceHolder(String placeholder) {
+    return setAttribute(HTML_INPUT_PLACEHOLDER, placeholder);
+  }
+
+  public Input setPlaceHolder(Enum text) {
+    return setAttribute(HTML_INPUT_PLACEHOLDER, text);
+  }
+
+  public Input setStep(int step) {
+    return setAttribute(HTML_INPUT_STEP, step);
   }
 
   public Input setType(Type type) {
-    return setAttribute(Widget.HTML_INPUT_TYPE, type.toString());
+    return setAttribute(HTML_INPUT_TYPE, type.toString());
   }
 
   public Input setValue(String value) {
-    return setAttribute(Widget.HTML_INPUT_VALUE, value);
+    return setAttribute(HTML_INPUT_VALUE, value);
   }
 
   public Input setValue(Enum value) {
-    return setAttribute(Widget.HTML_INPUT_VALUE, value);
+    return setAttribute(HTML_INPUT_VALUE, value);
   }
 
 }

@@ -15,6 +15,7 @@
 */
 package test.it.hysteresis.jamal;
 import it.hysteresis.jamal.Form;
+import it.hysteresis.jamal.Input;
 
 public class FormTest extends JamalTestCase {
 
@@ -294,6 +295,111 @@ public class FormTest extends JamalTestCase {
                                           "</form>");
     // exercise
     _widget.form().textarea("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateCheckbox() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"checkbox\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.checkbox, "dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCheckChekbox() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"checkbox\""+
+                                          "       checked=\"checked\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.checkbox, "dummy").setChecked(true);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testTurnCheckboxOff() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"checkbox\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.checkbox, "dummy")
+                  .setChecked(true)
+                  .setChecked(false);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetInputMaxValue() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"number\""+
+                                          "       max=\"10\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.number, "dummy").setMax(10);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetInputMinValue() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"number\""+
+                                          "       min=\"10\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.number, "dummy").setMin(10);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetInputSetpValue() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"number\""+
+                                          "       step=\"10\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.number, "dummy").setStep(10);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetInputPlaceholder() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"text\""+
+                                          "       placeholder=\"dummy-2\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.text, "dummy").setPlaceHolder("dummy-2");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetInputPlaceholderFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"text\""+
+                                          "       placeholder=\"LABEL_0\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.text, "dummy")
+                  .setPlaceHolder(FakeEnums.LABEL_0);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

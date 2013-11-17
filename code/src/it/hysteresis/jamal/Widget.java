@@ -52,7 +52,12 @@ public class Widget<T extends Widget> {
   static public final String HTML_FORM_ACTION = "action";
   static public final String HTML_FORM_METHOD = "method";
   static public final String HTML_INPUT = "input";
+  static public final String HTML_INPUT_CHECKED = "checked";
+  static public final String HTML_INPUT_MAX = "max";
+  static public final String HTML_INPUT_MIN = "min";
   static public final String HTML_INPUT_NAME = "name";
+  static public final String HTML_INPUT_PLACEHOLDER = "placeholder";
+  static public final String HTML_INPUT_STEP = "step";
   static public final String HTML_INPUT_TYPE = "type";
   static public final String HTML_INPUT_TYPE_SUBMIT = "submit";
   static public final String HTML_INPUT_VALUE = "value";
@@ -117,6 +122,19 @@ public class Widget<T extends Widget> {
   public T removeAttribute(String name) {
     _attributes.remove(name);
     return _this;
+  }
+
+  public T setAttribute(String name, boolean set) {
+    if (set) {
+      _attributes.put(name, name);
+    } else {
+      _attributes.remove(name);
+    }
+    return _this;
+  }
+
+  public T setAttribute(String name, int value) {
+    return setAttribute(name, Integer.toString(value));
   }
 
   public T setAttribute(String name, String value) {
@@ -221,6 +239,10 @@ public class Widget<T extends Widget> {
 
   public Form form() {
     return append(new Form(_i18n)).setMethod(Form.Method.post);
+  }
+
+  public Input input(Input.Type type, String name) {
+    return append(new Input(_i18n)).setType(type).setName(name);
   }
 
   public Input input(String name) {
