@@ -150,5 +150,31 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCreateInputLabel() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<label for=\"dummy-1\">"+
+                                          "dummy-2"+
+                                          "</label>"+
+                                          "</form>");
+    // exercise
+    _widget.form().label("dummy-1", "dummy-2");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateInputLabelFromDictionary() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<label for=\"dummy\">"+
+                                          "LABEL_0"+
+                                          "</label>"+
+                                          "</form>");
+    // exercise
+    _widget.form().label("dummy", FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 

@@ -56,6 +56,8 @@ public class Widget<T extends Widget> {
   static public final String HTML_INPUT_TYPE = "type";
   static public final String HTML_INPUT_TYPE_SUBMIT = "submit";
   static public final String HTML_INPUT_VALUE = "value";
+  static public final String HTML_LABEL = "label";
+  static public final String HTML_LABEL_FOR = "for";
   static public final String HTML_SUMMARY = "summary";
 
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
@@ -217,6 +219,15 @@ public class Widget<T extends Widget> {
 
   public Input input(String name, String value) {
     return input(name).setValue(value);
+  }
+
+  public Widget label(String inputId, String text) {
+    return append(HTML_LABEL).setAttribute(HTML_LABEL_FOR, inputId)
+                             .setTextContent(text);
+  }
+
+  public Widget label(String inputId, Enum text) {
+    return label(inputId, _i18n.getLabel(text));
   }
 
   public Input submit() {
