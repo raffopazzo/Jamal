@@ -13,7 +13,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package it.hysteresis.jamal.i18n;
+package test.it.hysteresis.jamal.i18n;
+import it.hysteresis.jamal.i18n.Dictionary;
+import it.hysteresis.jamal.i18n.Text;
 
 public class StubDictionary implements Dictionary {
   @Override

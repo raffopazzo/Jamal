@@ -24,7 +24,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import it.hysteresis.jamal.Widget;
-import it.hysteresis.jamal.i18n.StubDictionary;
+import test.it.hysteresis.jamal.i18n.StubDictionary;
 
 import junit.framework.TestCase; 
 

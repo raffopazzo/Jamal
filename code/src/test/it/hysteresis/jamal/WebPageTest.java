@@ -15,7 +15,7 @@
 */
 package test.it.hysteresis.jamal;
 
-import it.hysteresis.jamal.i18n.StubDictionary;
+import test.it.hysteresis.jamal.i18n.StubDictionary;
 import it.hysteresis.jamal.WebPage;
 
 public class WebPageTest extends JamalTestCase {
