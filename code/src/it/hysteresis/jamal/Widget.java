@@ -80,6 +80,10 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
   static public final String JAMAL_CLASS_BUTTON_ICON = "jamal-button-icon";
   static public final String JAMAL_CLASS_BUTTON_TEXT = "jamal-button-text";
+  static public final String JAMAL_CLASS_KEY_VALUE_WIDGET = "jamal-key-value-widget";
+  static public final String JAMAL_CLASS_KEY_VALUE_PAIR = "jamal-key-value-pair";
+  static public final String JAMAL_CLASS_KEY = "jamal-key";
+  static public final String JAMAL_CLASS_VALUE = "jamal-value";
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
   static public final String JAMAL_CLASS_WIDGET = "jamal-widget";
@@ -270,6 +274,10 @@ public class Widget<T extends Widget> {
 
   public Input input(String name, String value) {
     return input(name).setValue(value);
+  }
+
+  public KeyValueWidget keyValueWidget() {
+    return append(new KeyValueWidget(_i18n));
   }
 
   public Widget label(String inputId, String text) {
