@@ -19,44 +19,24 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class TabWidget extends Widget<TabWidget> {
 
-  static public enum Target {
-    _blank,
-    _self;
-  }
+  private Widget _tabsList;
+  private Widget _container;
 
   protected TabWidget(Dictionary i18n) {
     super(i18n);
-    addClassName(JAMAL_CLASS_KEY_VALUE_WIDGET);
+    addClassName(JAMAL_CLASS_TAB_WIDGET);
+    _tabsList = div().addClassName(JAMAL_CLASS_TAB_LIST);
+    _container = div().addClassName(JAMAL_CLASS_TAB_CONTAINER);
   }
 
-  public TabWidget addKeyValue(String key, String value) {
-    Widget pair = div().addClassName(JAMAL_CLASS_KEY_VALUE_PAIR);
-    pair.p(key).addClassName(JAMAL_CLASS_KEY);
-    pair.p(value).addClassName(JAMAL_CLASS_VALUE);
+  public TabWidget addTab(Widget tab) {
+    _tabsList.div().addClassName(JAMAL_CLASS_TAB).append(tab);
     return this;
   }
 
-  public TabWidget addKeyValue(Enum key, String value) {
-    return addKeyValue(_i18n.getLabel(key), value);
-  }
-
-  public TabWidget addKeyValue(String key, Enum value) {
-    return addKeyValue(key, _i18n.getLabel(value));
-  }
-
-  public TabWidget addKeyValue(Enum key, Enum value) {
-    return addKeyValue(_i18n.getLabel(key), _i18n.getLabel(value));
-  }
-
-  public TabWidget addKeyValue(String key, Widget value) {
-    Widget pair = div().addClassName(JAMAL_CLASS_KEY_VALUE_PAIR);
-    pair.p(key).addClassName(JAMAL_CLASS_KEY);
-    pair.div().addClassName(JAMAL_CLASS_VALUE).append(value);
+  public TabWidget addContent(Widget tab) {
+    _container.append(tab);
     return this;
-  }
-
-  public TabWidget addKeyValue(Enum key, Widget value) {
-    return addKeyValue(_i18n.getLabel(key), value);
   }
 
 }

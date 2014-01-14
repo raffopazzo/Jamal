@@ -86,6 +86,10 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_VALUE = "jamal-value";
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
+  static public final String JAMAL_CLASS_TAB_WIDGET = "jamal-tab-widget";
+  static public final String JAMAL_CLASS_TAB_LIST = "jamal-tab-list";
+  static public final String JAMAL_CLASS_TAB_CONTAINER = "jamal-tab-container";
+  static public final String JAMAL_CLASS_TAB = "jamal-tab";
   static public final String JAMAL_CLASS_WIDGET = "jamal-widget";
 
   protected Dictionary _i18n;
@@ -338,6 +342,10 @@ public class Widget<T extends Widget> {
 
   public Input submit(Enum text) {
     return submit(_i18n.getLabel(text));
+  }
+
+  public TabWidget tabWidget() {
+    return append(new TabWidget(_i18n));
   }
 
   public Widget textarea(String name) {
