@@ -15,6 +15,7 @@
 */
 package test.it.hysteresis.jamal;
 
+import it.hysteresis.jamal.TabWidget;
 import it.hysteresis.jamal.WebPage;
 import it.hysteresis.jamal.Widget;
 
@@ -64,7 +65,9 @@ public class TabWidgetTest extends JamalTestCase {
                                      "<div class=\"jamal-tab-container\"/>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addTab(new Widget()).addTab(new Widget());
+    TabWidget tabWidget = _widget.tabWidget();
+    tabWidget.addTab(new Widget());
+    tabWidget.addTab(new Widget());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -79,6 +82,54 @@ public class TabWidgetTest extends JamalTestCase {
                                      "</div>");
     // exercise
     _widget.tabWidget().addContent(new Widget());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSelectLabel() throws Exception { 
+    // setup
+    String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-tab-widget\">"+
+                                     "<div class=\"jamal-tab-list\">"+
+                                     "<div class=\"jamal-tab jamal-selected\">"+
+                                     "<div class=\"jamal-widget\"/>"+
+                                     "</div>"+
+                                     "</div>"+
+                                     "<div class=\"jamal-tab-container\"/>"+
+                                     "</div>");
+    // exercise
+    _widget.tabWidget().addTab(new Widget()).setSelected(true);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testDontSelectLabelIfBooleanFalse() throws Exception {
+    // setup
+    String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-tab-widget\">"+
+                                     "<div class=\"jamal-tab-list\">"+
+                                     "<div class=\"jamal-tab\">"+
+                                     "<div class=\"jamal-widget\"/>"+
+                                     "</div>"+
+                                     "</div>"+
+                                     "<div class=\"jamal-tab-container\"/>"+
+                                     "</div>");
+    // exercise
+    _widget.tabWidget().addTab(new Widget()).setSelected(false);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testResetSelectedToFalse() throws Exception {
+    // setup
+    String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-tab-widget\">"+
+                                     "<div class=\"jamal-tab-list\">"+
+                                     "<div class=\"jamal-tab\">"+
+                                     "<div class=\"jamal-widget\"/>"+
+                                     "</div>"+
+                                     "</div>"+
+                                     "<div class=\"jamal-tab-container\"/>"+
+                                     "</div>");
+    // exercise
+    _widget.tabWidget().addTab(new Widget()).setSelected(true).setSelected(false);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

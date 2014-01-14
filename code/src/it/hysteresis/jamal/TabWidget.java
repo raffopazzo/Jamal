@@ -15,12 +15,40 @@
 */
 package it.hysteresis.jamal;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import it.hysteresis.jamal.i18n.Dictionary;
 
 public class TabWidget extends Widget<TabWidget> {
 
   private Widget _tabsList;
   private Widget _container;
+
+  static public class Label extends Widget<Label> {
+
+    private boolean _selected;
+
+    protected Label(Widget content) {
+      super(null, HTML_DIV);
+      addClassName(JAMAL_CLASS_TAB);
+      append(content);
+      _selected = false;
+    }
+
+    public Label setSelected(boolean selected) {
+      _selected = selected;
+      return this;
+    }
+
+    @Override
+    protected Element render(Document document) {
+      if (_selected) {
+        addClassName(JAMAL_CLASS_SELECTED); 
+      }
+      return super.render(document);
+    }
+  }
 
   protected TabWidget(Dictionary i18n) {
     super(i18n);
@@ -29,9 +57,8 @@ public class TabWidget extends Widget<TabWidget> {
     _container = div().addClassName(JAMAL_CLASS_TAB_CONTAINER);
   }
 
-  public TabWidget addTab(Widget tab) {
-    _tabsList.div().addClassName(JAMAL_CLASS_TAB).append(tab);
-    return this;
+  public Label addTab(Widget tab) {
+    return (Label)_tabsList.append(new Label(tab));
   }
 
   public TabWidget addContent(Widget tab) {

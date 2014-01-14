@@ -86,6 +86,7 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_VALUE = "jamal-value";
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
+  static public final String JAMAL_CLASS_SELECTED = "jamal-selected";
   static public final String JAMAL_CLASS_TAB_WIDGET = "jamal-tab-widget";
   static public final String JAMAL_CLASS_TAB_LIST = "jamal-tab-list";
   static public final String JAMAL_CLASS_TAB_CONTAINER = "jamal-tab-container";
@@ -388,7 +389,7 @@ public class Widget<T extends Widget> {
     return document;
   }
 
-  private Element render(Document document) {
+  protected Element render(Document document) {
     Element element = document.createElement(_tag);
     element.setTextContent(_textContent);
     renderAttributes(element);
