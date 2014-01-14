@@ -95,6 +95,7 @@ public class Widget<T extends Widget> {
   protected LinkedList<Widget> _children;
   protected HashMap<String, String> _attributes;
   protected String _textContent;
+  protected Widget _parent;
 
   protected T _this;
 
@@ -105,6 +106,7 @@ public class Widget<T extends Widget> {
     _attributes = new HashMap<String, String>();
     _tag = tag;
     _this = (T)this;
+    _parent = null;
   }
 
   public Widget(Dictionary dictionary) {
@@ -121,6 +123,10 @@ public class Widget<T extends Widget> {
   }
 
   protected <W extends Widget> W append(W widget) {
+    if (widget._parent != null) {
+      widget._parent._children.remove(widget);
+    }
+    widget._parent = this; 
     _children.add(widget);
     return widget;
   }

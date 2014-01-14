@@ -134,5 +134,19 @@ public class KeyValueWidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testTakeOwnershipOfChildWidget() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-key-value-widget\">"+
+                                           "<div class=\"jamal-key-value-pair\">"+
+                                           "<p class=\"jamal-key\">LABEL_0</p>"+
+                                           "<div class=\"jamal-value\"><div/></div>"+
+                                           "</div>"+
+                                           "</div>"); 
+    // exercise
+    _widget.keyValueWidget().addKeyValue(FakeEnums.LABEL_0, _widget.div());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 
