@@ -159,6 +159,10 @@ public class Widget<T extends Widget> {
     return setAttribute(name, Integer.toString(value));
   }
 
+  public T setAttribute(String name, double value) {
+    return setAttribute(name, Double.toString(value));
+  }
+
   public T setAttribute(String name, String value) {
     _attributes.put(name, value);
     return _this;

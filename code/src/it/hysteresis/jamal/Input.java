@@ -63,6 +63,10 @@ public class Input extends Widget<Input> {
     return setAttribute(HTML_INPUT_STEP, step);
   }
 
+  public Input setStep(double step) {
+    return setAttribute(HTML_INPUT_STEP, step);
+  }
+
   public Input setType(Type type) {
     return setAttribute(HTML_INPUT_TYPE, type.toString());
   }

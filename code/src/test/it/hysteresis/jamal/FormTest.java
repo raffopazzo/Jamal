@@ -377,6 +377,19 @@ public class FormTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testSetInputSetpValueAsDouble() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<form method=\"post\">"+
+                                          "<input name=\"dummy\""+
+                                          "       type=\"number\""+
+                                          "       step=\"0.1\"/>"+
+                                          "</form>");
+    // exercise
+    _widget.form().input(Input.Type.number, "dummy").setStep(0.1);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testSetInputPlaceholder() throws Exception {
     // setup
     final String equivalentHtml= wrapHtml("<form method=\"post\">"+
