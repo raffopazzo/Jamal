@@ -127,7 +127,7 @@ public class Widget<T extends Widget> {
     return append(new Widget(_i18n, tag));
   }
 
-  protected <W extends Widget> W append(W widget) {
+  public <W extends Widget> W append(W widget) {
     if (widget._parent != null) {
       widget._parent._children.remove(widget);
     }
