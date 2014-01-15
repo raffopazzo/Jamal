@@ -53,17 +53,16 @@ public class TabWidget extends Widget<TabWidget> {
   protected TabWidget(Dictionary i18n) {
     super(i18n);
     addClassName(JAMAL_CLASS_TAB_WIDGET);
-    _tabsList = div().addClassName(JAMAL_CLASS_TAB_LIST);
-    _container = div().addClassName(JAMAL_CLASS_TAB_CONTAINER);
+    _tabsList = super.append(new Div(_i18n).addClassName(JAMAL_CLASS_TAB_LIST));
+    _container = super.append(new Div(_i18n).addClassName(JAMAL_CLASS_TAB_CONTAINER));
   }
 
   public Label addTab(Widget tab) {
     return (Label)_tabsList.append(new Label(tab));
   }
 
-  public TabWidget addContent(Widget tab) {
-    _container.append(tab);
-    return this;
+  @Override
+  public <W extends Widget> W append(W widget) {
+    return (W)_container.append(widget);
   }
-
 }

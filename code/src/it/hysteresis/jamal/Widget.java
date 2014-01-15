@@ -264,7 +264,7 @@ public class Widget<T extends Widget> {
   }
 
   public Widget div() {
-    return append(HTML_DIV);
+    return append(new Div(_i18n));
   }
 
   public FlowLayout flowLayout() {

@@ -81,7 +81,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "</div>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addContent(new Widget());
+    _widget.tabWidget().append(new Widget());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
