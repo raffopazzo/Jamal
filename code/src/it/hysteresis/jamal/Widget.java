@@ -174,7 +174,7 @@ public class Widget<T extends Widget> {
   }
 
   public String getId() {
-    return getAttribute(HTML_ID);
+    return _attributes.get(HTML_ID);
   }
 
   public T setTextContent(String text) {
