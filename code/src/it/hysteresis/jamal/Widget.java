@@ -80,17 +80,21 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_BUTTON = "jamal-button";
   static public final String JAMAL_CLASS_BUTTON_ICON = "jamal-button-icon";
   static public final String JAMAL_CLASS_BUTTON_TEXT = "jamal-button-text";
+  static public final String JAMAL_CLASS_CELL = "jamal-cell";
   static public final String JAMAL_CLASS_KEY_VALUE_WIDGET = "jamal-key-value-widget";
   static public final String JAMAL_CLASS_KEY_VALUE_PAIR = "jamal-key-value-pair";
   static public final String JAMAL_CLASS_KEY = "jamal-key";
-  static public final String JAMAL_CLASS_VALUE = "jamal-value";
+  static public final String JAMAL_CLASS_GRID = "jamal-grid";
+  static public final String JAMAL_CLASS_HEADER = "jamal-header";
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
+  static public final String JAMAL_CLASS_ROW = "jamal-row";
   static public final String JAMAL_CLASS_SELECTED = "jamal-selected";
   static public final String JAMAL_CLASS_TAB_WIDGET = "jamal-tab-widget";
   static public final String JAMAL_CLASS_TAB_LIST = "jamal-tab-list";
   static public final String JAMAL_CLASS_TAB_CONTAINER = "jamal-tab-container";
   static public final String JAMAL_CLASS_TAB = "jamal-tab";
+  static public final String JAMAL_CLASS_VALUE = "jamal-value";
   static public final String JAMAL_CLASS_WIDGET = "jamal-widget";
 
   protected Dictionary _i18n;
@@ -186,6 +190,10 @@ public class Widget<T extends Widget> {
     return _this;
   }
 
+  public T setTextContent(Enum text) {
+    return setTextContent(_i18n.getLabel(text));
+  }
+
   public T setTitle(String title) {
     return setAttribute(HTML_TITLE, title);
   }
@@ -267,7 +275,7 @@ public class Widget<T extends Widget> {
     return details(_i18n.getLabel(summary));
   }
 
-  public Widget div() {
+  public Div div() {
     return append(new Div(_i18n));
   }
 
@@ -281,6 +289,10 @@ public class Widget<T extends Widget> {
 
   public Widget img(String src) {
     return append(HTML_IMG).setAttribute(HTML_IMG_SRC, src);
+  }
+
+  public GridWidget grid() {
+    return append(new GridWidget(_i18n));
   }
 
   public Input input(Input.Type type, String name) {
