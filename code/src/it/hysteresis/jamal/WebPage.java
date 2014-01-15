@@ -20,6 +20,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -28,7 +31,8 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class WebPage extends Widget<WebPage> {
 
-  static public final String HTML5_DECLARATION = "<!DOCTYPE html>";
+  static public final String ENCODING_UTF8 = "utf-8";
+
   static public final String HTML = "html";
   static public final String HTML_BODY = "body";
   static public final String HTML_HEAD = "head";
@@ -46,6 +50,10 @@ public class WebPage extends Widget<WebPage> {
   static public final String HTML_TITLE = "title";
 
   static public final String MIME_CSS = "text/css";
+
+  static public final String XHTML_DOCTYPE_PUBLIC = "-//W3C//DTD XHTML 1.0 Transitional//EN";
+  static public final String XHTML_DOCTYPE_SYSTEM = "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd";
+  static public final String XHTML_NAMESPACE = "http://www.w3.org/1999/xhtml";
 
   private String _title;
   private HashMap<String, String> _metas;
@@ -65,7 +73,8 @@ public class WebPage extends Widget<WebPage> {
 
   @Override
   protected Node prepareDocument(Document document) {
-    Element root = (Element)document.appendChild(document.createElement(HTML));
+    Element root = (Element)document.appendChild(document.createElementNS(XHTML_NAMESPACE,
+                                                                          HTML));
     root.appendChild(renderDocumentHead(document));
     return root;
   }
@@ -137,8 +146,13 @@ public class WebPage extends Widget<WebPage> {
   }
 
   @Override
-  public String toString() {
-    return HTML5_DECLARATION + super.toString();
+  protected Transformer prepareTransformer(Transformer transformer) {
+    transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+    transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, XHTML_DOCTYPE_PUBLIC);
+    transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, XHTML_DOCTYPE_SYSTEM);
+    transformer.setOutputProperty(OutputKeys.ENCODING, ENCODING_UTF8);
+    return transformer;
   }
 
 }

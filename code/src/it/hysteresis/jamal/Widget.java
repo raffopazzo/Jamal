@@ -386,9 +386,7 @@ public class Widget<T extends Widget> {
     try {
       Document document = renderDocument();
       TransformerFactory factory = TransformerFactory.newInstance();
-      Transformer transformer = factory.newTransformer();
-      transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-      transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+      Transformer transformer = prepareTransformer(factory.newTransformer());
       DOMSource source = new DOMSource(document);
       StringWriter writer = new StringWriter();
       transformer.transform(source, new StreamResult(writer));
@@ -397,6 +395,12 @@ public class Widget<T extends Widget> {
     } catch (Exception e) {
       throw new RuntimeException("Can't render HTML document", e);
     }
+  }
+
+  protected Transformer prepareTransformer(Transformer transformer) {
+    transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+    return transformer;
   }
 
   private Document renderDocument() throws Exception {
