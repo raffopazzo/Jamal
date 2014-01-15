@@ -24,9 +24,18 @@ public class FlowLayout extends Widget<FlowLayout> {
     addClassName(JAMAL_CLASS_LAYOUT_FLOW);
   }
 
+  @Override
+  public <W extends Widget> W append(final W widget) {
+    super.append(
+      new Widget(_i18n, HTML_DIV) {{
+        addClassName(JAMAL_CLASS_LAYOUT_ITEM);
+        append(widget);
+    }});
+    return widget;
+  }
+
   public FlowLayout addWidget(Widget widget) {
-    Widget layoutItem = div().addClassName(JAMAL_CLASS_LAYOUT_ITEM);
-    layoutItem.append(widget);
+    append(widget);
     return this;
   }
 

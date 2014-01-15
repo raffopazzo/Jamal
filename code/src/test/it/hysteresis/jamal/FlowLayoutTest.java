@@ -57,5 +57,18 @@ public class FlowLayoutTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testAppendWidgetToFlowLayout() throws Exception { 
+    // setup
+    final String equivalentHtml= wrapHtml("<div class=\"jamal-layout-flow\">"+
+                                          "<div class=\"jamal-layout-item\">"+
+                                          "<div class=\"jamal-widget\"/>"+
+                                          "</div>"+
+                                          "</div>"); 
+    // exercise
+    _widget.flowLayout().append(new Widget());
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
 }
 
