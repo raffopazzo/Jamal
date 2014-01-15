@@ -146,6 +146,15 @@ public class WidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCreateParagraphElementFromDictionary() throws Exception { 
+    // setup
+    final String equivalentHtml = wrapHtml("<p>LABEL_0</p>");
+    // exercise
+    _widget.p(FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testCreatePreElement() throws Exception { 
     // setup
     final String equivalentHtml = wrapHtml("<pre>dummy</pre>");

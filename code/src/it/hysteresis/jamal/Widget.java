@@ -329,6 +329,10 @@ public class Widget<T extends Widget> {
     return append(HTML_P).setTextContent(text);
   }
 
+  public Widget p(Enum text) {
+    return p(_i18n.getLabel(text));
+  }
+
   public Widget pre(String text) {
     return append(HTML_PRE).setTextContent(text);
   }
