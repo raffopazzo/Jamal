@@ -19,7 +19,7 @@
   <property name="cfg.dir" value="config"/>
   <property name="deploy.dir" value="./"/>
   <property name="jamal.jar" value="${deploy.dir}/jamal.jar"/>
-  <property name="src.dir" value="src"/>
+  <property name="src.dir" value="src/java"/>
   <property name="test.pkg" value="test"/>
 
   <!-- classpath -->

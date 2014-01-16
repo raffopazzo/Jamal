@@ -1,0 +1,65 @@
+/*
+  Copyright 2013 Rossi Raffaele <rossi.raffaele@gmail.com>
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
+
+/* Widget */
+div-jamal-widget {
+
+}
+
+/* Button */
+.jamal-button {
+  display: inline-block;
+}
+
+.jamal-button > div {
+  display: block;
+  margin: 0;
+  text-align: center;
+}
+
+@media screen and (max-width:640px) {
+  .jamal-button > .jamal-button-text {
+    display: none;
+  }
+}
+
+/* TabWidget */
+div.jamal-tab-widget {
+
+}
+
+div.jamal-tab {
+  display: inline-block;
+  padding: 5px 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 0 3px #d0d8df;
+  border: 1px solid #d0d8df;
+  border-bottom: none;
+}
+
+div.jamal-tab:hover {
+  background: #f0f8ff;
+}
+
+div.jamal-tab.jamal-selected {
+  background: #f0f8ff;
+}
+
+div.jamal-tab-container {
+  border: 1px solid #d0d8df;
+  padding: 0.5em;
+}
