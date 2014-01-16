@@ -118,13 +118,18 @@ public class Widget<T extends Widget> {
     _parent = null;
   }
 
+  public Widget(Widget parent) {
+    this(parent._i18n);
+    parent.append(this);
+  }
+
   public Widget(Dictionary dictionary) {
     this(dictionary, HTML_DIV);
     addClassName(JAMAL_CLASS_WIDGET);
   }
 
   public Widget() {
-    this(null);
+    this((Dictionary)null);
   }
 
   protected Widget append(String tag) {

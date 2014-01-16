@@ -204,5 +204,25 @@ public class WidgetTest extends JamalTestCase {
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
+
+  public void testAppendChildWidgetToParent() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget\"/>");
+    // exercise
+    new Widget(_widget);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testPropagateDictionaryToChildWidget() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget\">"+
+                                           "<p>LABEL_0</p>"+
+                                           "</div>");
+    // exercise
+    new Widget(_widget).p(FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
 }
 
