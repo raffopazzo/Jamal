@@ -19,13 +19,17 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class GridWidget extends Widget<GridWidget> {
 
+  public GridWidget(Widget parent) {
+    super(parent);
+    addClassName(JAMAL_CLASS_GRID);
+  }
+
   public GridWidget(Dictionary dictionary) {
     super(dictionary);
     addClassName(JAMAL_CLASS_GRID);
   }
 
   public GridWidget() {
-    this(null);
   }
 
   public Widget appendHeader(Object...headers) {
@@ -33,21 +37,46 @@ public class GridWidget extends Widget<GridWidget> {
   }
 
   public Widget appendRow(Object...items) {
-    Div row = div().addClassName(JAMAL_CLASS_ROW);
-    for (Object obj: items) {
-      if (obj == null) {
-        row.div().addClassName(JAMAL_CLASS_CELL);
-      } else if (obj instanceof String) {
-        row.div().addClassName(JAMAL_CLASS_CELL).setTextContent(obj.toString()); 
-      } else if (obj instanceof Enum) {
-        row.div().addClassName(JAMAL_CLASS_CELL).setTextContent((Enum)obj);
-      } else if (obj instanceof Widget) {
-        row.div().addClassName(JAMAL_CLASS_CELL).append((Widget)obj);
-      } else {
-        throw new RuntimeException("Unexpected object: " + obj.getClass().getName());
+    if (items.length == 1 && items[0] instanceof GridRowWidget) {
+      append((Widget)items[0]);
+      return (Widget)items[0];
+    } else {
+      Div row = div().addClassName(JAMAL_CLASS_ROW);
+      for (Object obj: items) {
+        if (obj == null) {
+          row.div().addClassName(JAMAL_CLASS_CELL);
+        } else if (obj instanceof String) {
+          row.div().addClassName(JAMAL_CLASS_CELL).setTextContent(obj.toString()); 
+        } else if (obj instanceof Enum) {
+          row.div().addClassName(JAMAL_CLASS_CELL).setTextContent((Enum)obj);
+        } else if (obj instanceof Widget) {
+          row.div().addClassName(JAMAL_CLASS_CELL).append((Widget)obj);
+        } else {
+          throw new RuntimeException("Unexpected object: " + obj.getClass().getName());
+        }
       }
+      return row;
     }
-    return row;
+  }
+
+  static public class GridRowWidget extends Widget<GridRowWidget> {
+    public GridRowWidget() {
+      super(null, HTML_DIV);
+      addClassName(JAMAL_CLASS_ROW);
+    }
+
+    public GridRowWidget(Widget parent) {
+      super(parent._i18n, HTML_DIV);
+      parent.append(this);
+      addClassName(JAMAL_CLASS_ROW);
+    }
+
+    @Override
+    public <W extends Widget> W append(W widget) {
+      super.append(new Div(_i18n).addClassName(JAMAL_CLASS_CELL))
+           .append(widget);
+      return widget;
+    }
   }
 
 };

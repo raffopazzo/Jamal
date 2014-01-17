@@ -15,8 +15,9 @@
 */
 
 /* Widget */
-div-jamal-widget {
-
+.jamal-widget {
+  margin: 0.25em;
+  padding: 0.25em;
 }
 
 /* Button */
@@ -30,36 +31,69 @@ div-jamal-widget {
   text-align: center;
 }
 
-@media screen and (max-width:640px) {
-  .jamal-button > .jamal-button-text {
-    display: none;
-  }
+/* For mobile devices and potrait tablets, always hide button's text */
+@media screen and (max-width:768px) {
+  .jamal-button-text { display: none; }
 }
+
+/* FlowLayout */
+.jamal-layout-flow {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.jamal-layout-item {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+/* For mobile devices, always displays items vertically */
+@media screen and (max-width:640px) {
+  .jamal-layout-item { display: block; }
+}
+
+/* GridWidget */
+.jamal-cell {
+  display: table-cell;
+  padding: 0 0.5em;
+  vertical-align: middle;
+}
+
+.jamal-grid {
+  display: table;
+  width: 100%;
+}
+
+.jamal-header {
+  font-weight: bold;
+}
+
+.jamal-row {
+  display: table-row;
+}
+
 
 /* TabWidget */
-div.jamal-tab-widget {
+.jamal-tab-widget {
 
 }
 
-div.jamal-tab {
+.jamal-tab {
   display: inline-block;
   padding: 5px 10px;
+  border: 1px solid #d0d8df;
+  border-bottom: none;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   box-shadow: 2px 0 3px #d0d8df;
+}
+
+.jamal-tab:hover { background: #f0f8ff; }
+.jamal-tab.jamal-selected { background: #f0f8ff; }
+
+.jamal-tab-container {
   border: 1px solid #d0d8df;
-  border-bottom: none;
-}
-
-div.jamal-tab:hover {
-  background: #f0f8ff;
-}
-
-div.jamal-tab.jamal-selected {
-  background: #f0f8ff;
-}
-
-div.jamal-tab-container {
-  border: 1px solid #d0d8df;
-  padding: 0.5em;
+  padding: 0.25em;
 }

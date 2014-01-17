@@ -14,6 +14,8 @@
   limitations under the License.
 */
 package test.it.hysteresis.jamal;
+import it.hysteresis.jamal.GridWidget;
+import it.hysteresis.jamal.GridWidget.GridRowWidget;
 import it.hysteresis.jamal.Widget;
 
 public class GridWidgetTest extends JamalTestCase {
@@ -171,6 +173,58 @@ public class GridWidgetTest extends JamalTestCase {
                                           "</div>"); 
     // exercise
     _widget.grid().appendRow(null, FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testAppendGridRowWidget() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
+                                          "<div class=\"jamal-row\">"+
+                                          "<div class=\"jamal-cell\"><div><p>Dummy 0</p></div></div>"+
+                                          "<div class=\"jamal-cell\"><div><p>Dummy 1</p></div></div>"+
+                                          "</div>"+
+                                          "</div>"); 
+    // exercise
+    _widget.grid().appendRow(new GridRowWidget() {{
+      div().p("Dummy 0");
+      div().p("Dummy 1");
+    }});
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testAppendChildGridRowWidget() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
+                                          "<div class=\"jamal-row\">"+
+                                          "<div class=\"jamal-cell\"><div><p>Dummy 0</p></div></div>"+
+                                          "<div class=\"jamal-cell\"><div><p>Dummy 1</p></div></div>"+
+                                          "</div>"+
+                                          "</div>"); 
+    // exercise
+    _widget.grid().append(new GridRowWidget() {{
+      div().p("Dummy 0");
+      div().p("Dummy 1");
+    }});
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCreateAndAppendChildGridRowWidget() throws Exception {
+    // setup
+    final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
+                                          "<div class=\"jamal-row\">"+
+                                          "<div class=\"jamal-cell\"><div><p>LABEL_0</p></div></div>"+
+                                          "<div class=\"jamal-cell\"><div><p>LABEL_1</p></div></div>"+
+                                          "</div>"+
+                                          "</div>"); 
+    // exercise
+    GridWidget widget = _widget.grid();
+    new GridRowWidget(widget) {{
+      div().p(FakeEnums.LABEL_0);
+      div().p(FakeEnums.LABEL_1);
+    }};
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
