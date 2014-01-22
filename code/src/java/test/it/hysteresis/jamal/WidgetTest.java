@@ -209,7 +209,7 @@ public class WidgetTest extends JamalTestCase {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-widget\"/>");
     // exercise
-    new Widget(_widget);
+    new Widget<Widget>(_widget);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -220,7 +220,7 @@ public class WidgetTest extends JamalTestCase {
                                            "<p>LABEL_0</p>"+
                                            "</div>");
     // exercise
-    new Widget(_widget).p(FakeEnums.LABEL_0);
+    new Widget<Widget>(_widget).p(FakeEnums.LABEL_0);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

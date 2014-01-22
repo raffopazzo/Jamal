@@ -113,7 +113,7 @@ public class KeyValueWidgetTest extends JamalTestCase {
                                            "</div>"+
                                            "</div>"); 
     // exercise
-    _widget.keyValueWidget().addKeyValue("Dummy", new Widget());
+    _widget.keyValueWidget().addKeyValue("Dummy", new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -129,7 +129,7 @@ public class KeyValueWidgetTest extends JamalTestCase {
                                            "</div>"+
                                            "</div>"); 
     // exercise
-    _widget.keyValueWidget().addKeyValue(FakeEnums.LABEL_0, new Widget());
+    _widget.keyValueWidget().addKeyValue(FakeEnums.LABEL_0, new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

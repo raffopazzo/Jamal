@@ -46,7 +46,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "<div class=\"jamal-tab-container\"/>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addTab(new Widget());
+    _widget.tabWidget().addTab(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -66,8 +66,8 @@ public class TabWidgetTest extends JamalTestCase {
                                      "</div>");
     // exercise
     TabWidget tabWidget = _widget.tabWidget();
-    tabWidget.addTab(new Widget());
-    tabWidget.addTab(new Widget());
+    tabWidget.addTab(new Widget<Widget>());
+    tabWidget.addTab(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -81,7 +81,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "</div>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().append(new Widget());
+    _widget.tabWidget().append(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -97,7 +97,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "<div class=\"jamal-tab-container\"/>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addTab(new Widget()).setSelected(true);
+    _widget.tabWidget().addTab(new Widget<Widget>()).setSelected(true);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -113,7 +113,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "<div class=\"jamal-tab-container\"/>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addTab(new Widget()).setSelected(false);
+    _widget.tabWidget().addTab(new Widget<Widget>()).setSelected(false);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -129,7 +129,7 @@ public class TabWidgetTest extends JamalTestCase {
                                      "<div class=\"jamal-tab-container\"/>"+
                                      "</div>");
     // exercise
-    _widget.tabWidget().addTab(new Widget()).setSelected(true).setSelected(false);
+    _widget.tabWidget().addTab(new Widget<Widget>()).setSelected(true).setSelected(false);
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

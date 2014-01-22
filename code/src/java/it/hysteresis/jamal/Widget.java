@@ -114,11 +114,15 @@ public class Widget<T extends Widget> {
     _children = new LinkedList<Widget>();
     _attributes = new HashMap<String, String>();
     _tag = tag;
-    _this = (T)this;
     _parent = null;
+    // We need to use temporary variable in order to use have SuppressWarnings
+    // really suppressing our warning.
+    @SuppressWarnings("unchecked")
+    T that = (T)this;
+    _this = that;
   }
 
-  public Widget(Widget parent) {
+  public Widget(Widget<? extends Widget> parent) {
     this(parent._i18n);
     parent.append(this);
   }
@@ -132,11 +136,11 @@ public class Widget<T extends Widget> {
     this((Dictionary)null);
   }
 
-  protected Widget append(String tag) {
-    return append(new Widget(_i18n, tag));
+  protected Widget<Widget> append(String tag) {
+    return append(new Widget<Widget>(_i18n, tag));
   }
 
-  public <W extends Widget> W append(W widget) {
+  public <W extends Widget<? extends Widget>> W append(W widget) {
     if (widget._parent != null) {
       widget._parent._children.remove(widget);
     }
@@ -224,7 +228,7 @@ public class Widget<T extends Widget> {
     return a(href, _i18n.getLabel(label));
   }
 
-  public Anchor a(String href, Widget content) {
+  public Anchor a(String href, Widget<? extends Widget> content) {
     Anchor a = a(href);
     a.append(content);
     return a;
@@ -418,7 +422,7 @@ public class Widget<T extends Widget> {
   }
 
   protected Node prepareDocument(Document document) {
-    /* The root of Widgets is the documents itself */
+    // The root of Widgets is the document itself
     return document;
   }
 

@@ -36,12 +36,12 @@ public class JamalTestCase  extends TestCase {
   };
 
   protected DocumentBuilder _docBuilder;
-  protected Widget _widget;
+  protected Widget<Widget> _widget;
 
   @Override
   protected void setUp() throws Exception { 
     setUpDocumentBuilder();
-    _widget = new Widget(new StubDictionary());
+    _widget = new Widget<Widget>(new StubDictionary());
     
   }
 

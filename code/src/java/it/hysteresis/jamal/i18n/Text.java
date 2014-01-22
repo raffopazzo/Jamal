@@ -44,7 +44,7 @@ public class Text {
 
   public List<String> getParametersName() {
     Matcher matcher = PARAMETER_EXTRACTOR.matcher(_text);
-    List parameters = new LinkedList<String>();
+    List<String> parameters = new LinkedList<String>();
     while (matcher.find()) {
       parameters.add( matcher.group(1) );
     }

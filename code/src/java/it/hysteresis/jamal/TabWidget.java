@@ -22,14 +22,14 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class TabWidget extends Widget<TabWidget> {
 
-  private Widget _tabsList;
-  private Widget _container;
+  private Div _tabsList;
+  private Div _container;
 
   static public class Label extends Widget<Label> {
 
     private boolean _selected;
 
-    protected Label(Widget content) {
+    protected Label(Widget<? extends Widget> content) {
       super(null, HTML_DIV);
       addClassName(JAMAL_CLASS_TAB);
       append(content);
@@ -57,12 +57,12 @@ public class TabWidget extends Widget<TabWidget> {
     _container = super.append(new Div(_i18n).addClassName(JAMAL_CLASS_TAB_CONTAINER));
   }
 
-  public Label addTab(Widget tab) {
-    return (Label)_tabsList.append(new Label(tab));
+  public Label addTab(Widget<? extends Widget> tab) {
+    return _tabsList.append(new Label(tab));
   }
 
   @Override
-  public <W extends Widget> W append(W widget) {
+  public <W extends Widget<? extends Widget>> W append(W widget) {
     return (W)_container.append(widget);
   }
 }

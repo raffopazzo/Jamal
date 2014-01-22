@@ -131,7 +131,7 @@ public class AnchorTest extends JamalTestCase {
                                            "</a>"+
                                            "</div>");
     // exercise
-    _widget.div().a("#", new Widget());
+    _widget.div().a("#", new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -144,7 +144,7 @@ public class AnchorTest extends JamalTestCase {
                                            "</a>"+
                                            "</div>");
     // exercise
-    _widget.div().a("#", new Widget()).setHref("dummy");
+    _widget.div().a("#", new Widget<Widget>()).setHref("dummy");
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

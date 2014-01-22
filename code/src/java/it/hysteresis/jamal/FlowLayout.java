@@ -25,7 +25,7 @@ public class FlowLayout extends Widget<FlowLayout> {
   }
 
   @Override
-  public <W extends Widget> W append(final W widget) {
+  public <W extends Widget<? extends Widget>> W append(final W widget) {
     super.append(
       new Div(_i18n) {{
         addClassName(JAMAL_CLASS_LAYOUT_ITEM);
@@ -34,7 +34,7 @@ public class FlowLayout extends Widget<FlowLayout> {
     return widget;
   }
 
-  public FlowLayout addWidget(Widget widget) {
+  public FlowLayout addWidget(Widget<? extends Widget> widget) {
     append(widget);
     return this;
   }

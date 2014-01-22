@@ -19,7 +19,7 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class GridWidget extends Widget<GridWidget> {
 
-  public GridWidget(Widget parent) {
+  public GridWidget(Widget<? extends Widget> parent) {
     super(parent);
     addClassName(JAMAL_CLASS_GRID);
   }
@@ -36,10 +36,10 @@ public class GridWidget extends Widget<GridWidget> {
     return appendRow(headers).addClassName(JAMAL_CLASS_HEADER);
   }
 
-  public Widget appendRow(Object...items) {
+  public Widget<? extends Widget> appendRow(Object...items) {
     if (items.length == 1 && items[0] instanceof GridRowWidget) {
-      append((Widget)items[0]);
-      return (Widget)items[0];
+      append((Widget<? extends Widget>)items[0]);
+      return (Widget<? extends Widget>)items[0];
     } else {
       Div row = div().addClassName(JAMAL_CLASS_ROW);
       for (Object obj: items) {
@@ -50,7 +50,7 @@ public class GridWidget extends Widget<GridWidget> {
         } else if (obj instanceof Enum) {
           row.div().addClassName(JAMAL_CLASS_CELL).setTextContent((Enum)obj);
         } else if (obj instanceof Widget) {
-          row.div().addClassName(JAMAL_CLASS_CELL).append((Widget)obj);
+          row.div().addClassName(JAMAL_CLASS_CELL).append((Widget<? extends Widget>)obj);
         } else {
           throw new RuntimeException("Unexpected object: " + obj.getClass().getName());
         }
@@ -65,14 +65,14 @@ public class GridWidget extends Widget<GridWidget> {
       addClassName(JAMAL_CLASS_ROW);
     }
 
-    public GridRowWidget(Widget parent) {
+    public GridRowWidget(Widget<? extends Widget> parent) {
       super(parent._i18n, HTML_DIV);
       parent.append(this);
       addClassName(JAMAL_CLASS_ROW);
     }
 
     @Override
-    public <W extends Widget> W append(W widget) {
+    public <W extends Widget<? extends Widget>> W append(W widget) {
       super.append(new Div(_i18n).addClassName(JAMAL_CLASS_CELL))
            .append(widget);
       return widget;

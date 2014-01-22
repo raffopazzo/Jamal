@@ -43,14 +43,14 @@ public class KeyValueWidget extends Widget<KeyValueWidget> {
     return addKeyValue(_i18n.getLabel(key), _i18n.getLabel(value));
   }
 
-  public KeyValueWidget addKeyValue(String key, Widget value) {
+  public KeyValueWidget addKeyValue(String key, Widget<? extends Widget> value) {
     Widget pair = div().addClassName(JAMAL_CLASS_KEY_VALUE_PAIR);
     pair.p(key).addClassName(JAMAL_CLASS_KEY);
     pair.div().addClassName(JAMAL_CLASS_VALUE).append(value);
     return this;
   }
 
-  public KeyValueWidget addKeyValue(Enum key, Widget value) {
+  public KeyValueWidget addKeyValue(Enum key, Widget<? extends Widget> value) {
     return addKeyValue(_i18n.getLabel(key), value);
   }
 

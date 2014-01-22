@@ -40,7 +40,9 @@
            srcdir="${src.dir}"
            destdir="${build.dir}"
            debug="true"
-           includeantruntime="false"/>
+           includeantruntime="false">
+      <compilerarg value="-Xlint:unchecked"/>
+    </javac>
   </target>
 
   <!-- jar -->

@@ -35,7 +35,7 @@ public class FlowLayoutTest extends JamalTestCase {
                                           "</div>"+
                                           "</div>"); 
     // exercise
-    _widget.flowLayout().addWidget(new Widget());
+    _widget.flowLayout().addWidget(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -51,8 +51,8 @@ public class FlowLayoutTest extends JamalTestCase {
                                           "</div>"+
                                           "</div>"); 
     // exercise
-    _widget.flowLayout().addWidget(new Widget())
-                        .addWidget(new Widget());
+    _widget.flowLayout().addWidget(new Widget<Widget>())
+                        .addWidget(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
@@ -65,7 +65,7 @@ public class FlowLayoutTest extends JamalTestCase {
                                           "</div>"+
                                           "</div>"); 
     // exercise
-    _widget.flowLayout().append(new Widget());
+    _widget.flowLayout().append(new Widget<Widget>());
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }
