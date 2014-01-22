@@ -74,6 +74,13 @@
   display: table-row;
 }
 
+.jamal-row:nth-of-type(2n +3) {
+  background: #f0f8ff;
+}
+
+.jamal-row:nth-child(n+3) > div {
+  border-top: 1px solid #d0d8df;
+}
 
 /* TabWidget */
 .jamal-tab-widget {
