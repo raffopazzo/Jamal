@@ -32,25 +32,25 @@ public class GridWidget extends Widget<GridWidget> {
   public GridWidget() {
   }
 
-  public Widget appendHeader(Object...headers) {
+  public GridRowWidget appendHeader(Object...headers) {
     return appendRow(headers).addClassName(JAMAL_CLASS_HEADER);
   }
 
-  public Widget<? extends Widget> appendRow(Object...items) {
+  public GridRowWidget appendRow(Object...items) {
     if (items.length == 1 && items[0] instanceof GridRowWidget) {
-      append((Widget<? extends Widget>)items[0]);
-      return (Widget<? extends Widget>)items[0];
+      append((GridRowWidget)items[0]);
+      return (GridRowWidget)items[0];
     } else {
-      Div row = div().addClassName(JAMAL_CLASS_ROW);
+      GridRowWidget row = new GridRowWidget(this);
       for (Object obj: items) {
         if (obj == null) {
-          row.div().addClassName(JAMAL_CLASS_CELL);
+          row.div();
         } else if (obj instanceof String) {
-          row.div().addClassName(JAMAL_CLASS_CELL).setTextContent(obj.toString()); 
+          row.p((String)obj); 
         } else if (obj instanceof Enum) {
-          row.div().addClassName(JAMAL_CLASS_CELL).setTextContent((Enum)obj);
+          row.p((Enum)obj);
         } else if (obj instanceof Widget) {
-          row.div().addClassName(JAMAL_CLASS_CELL).append((Widget<? extends Widget>)obj);
+          row.append((Widget<? extends Widget>)obj);
         } else {
           throw new RuntimeException("Unexpected object: " + obj.getClass().getName());
         }

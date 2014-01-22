@@ -34,10 +34,10 @@ public class GridWidgetTest extends JamalTestCase {
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row jamal-header\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy 0"+
+                                          "<p>Dummy 0</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy 1"+
+                                          "<p>Dummy 1</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
@@ -52,10 +52,10 @@ public class GridWidgetTest extends JamalTestCase {
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row jamal-header\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy"+
+                                          "<p>Dummy</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
@@ -70,10 +70,10 @@ public class GridWidgetTest extends JamalTestCase {
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row jamal-header\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy"+
+                                          "<p>Dummy</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
                                           "<div class=\"jamal-widget\"/>"+
@@ -90,9 +90,9 @@ public class GridWidgetTest extends JamalTestCase {
     // setup
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row jamal-header\">"+
-                                          "<div class=\"jamal-cell\"/>"+
+                                          "<div class=\"jamal-cell\"><div/></div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
@@ -102,17 +102,15 @@ public class GridWidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
-//////////////////////
-
   public void testAppendRow() throws Exception {
     // setup
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy 0"+
+                                          "<p>Dummy 0</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy 1"+
+                                          "<p>Dummy 1</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
@@ -127,10 +125,10 @@ public class GridWidgetTest extends JamalTestCase {
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy"+
+                                          "<p>Dummy</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
@@ -145,10 +143,10 @@ public class GridWidgetTest extends JamalTestCase {
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row\">"+
                                           "<div class=\"jamal-cell\">"+
-                                          "Dummy"+
+                                          "<p>Dummy</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "<div class=\"jamal-cell\">"+
                                           "<div class=\"jamal-widget\"/>"+
@@ -165,9 +163,9 @@ public class GridWidgetTest extends JamalTestCase {
     // setup
     final String equivalentHtml= wrapHtml("<div class=\"jamal-widget jamal-grid\">"+
                                           "<div class=\"jamal-row\">"+
-                                          "<div class=\"jamal-cell\"/>"+
+                                          "<div class=\"jamal-cell\"><div/></div>"+
                                           "<div class=\"jamal-cell\">"+
-                                          "LABEL_0"+
+                                          "<p>LABEL_0</p>"+
                                           "</div>"+
                                           "</div>"+
                                           "</div>"); 
