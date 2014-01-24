@@ -68,6 +68,14 @@
   width: 100%;
 }
 
+.jamal-grid > p:first-child {
+  display: table-caption;
+  font-weight: bold;
+  color: rgb(10, 110, 210);
+  text-align: center;
+  font-size: 1.2em;
+}
+
 .jamal-header {
   font-weight: bold;
 }
