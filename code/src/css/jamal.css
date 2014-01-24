@@ -26,7 +26,6 @@
 }
 
 .jamal-button > div {
-  display: block;
   margin: 0;
   text-align: center;
 }
@@ -57,8 +56,11 @@
 /* GridWidget */
 .jamal-cell {
   display: table-cell;
-  padding: 0 0.5em;
   vertical-align: middle;
+}
+
+.jamal-cell > * {
+  margin: 0.5em;
 }
 
 .jamal-grid {
@@ -78,8 +80,31 @@
   background: #f0f8ff;
 }
 
-.jamal-row:nth-child(n+3) > div {
+.jamal-row:nth-of-type(n+3) > div {
   border-top: 1px solid #d0d8df;
+}
+
+/* KeyValueWidget */
+
+.jamal-key-value-widget {
+  display: table;
+  padding: 0;
+  width: 100%;
+}
+
+div.jamal-key-value-pair { display: table-row; }
+
+.jamal-key,
+.jamal-value {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+.jamal-key {
+  text-align: right;
+  font-weight: bold;
+  color: rgb(25,25,135);
 }
 
 /* TabWidget */
