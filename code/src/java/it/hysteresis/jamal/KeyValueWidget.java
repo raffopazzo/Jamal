@@ -19,6 +19,11 @@ import it.hysteresis.jamal.i18n.Dictionary;
 
 public class KeyValueWidget extends Widget<KeyValueWidget> {
 
+  public KeyValueWidget(Widget<? extends Widget> parent) {
+    super(parent);
+    addClassName(JAMAL_CLASS_KEY_VALUE_WIDGET);
+  }
+
   protected KeyValueWidget(Dictionary i18n) {
     super(i18n);
     addClassName(JAMAL_CLASS_KEY_VALUE_WIDGET);

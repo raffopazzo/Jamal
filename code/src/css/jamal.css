@@ -90,9 +90,18 @@
   display: table;
   padding: 0;
   width: 100%;
+  table-layout: fixed;
 }
 
-div.jamal-key-value-pair { display: table-row; }
+.jamal-key-value-widget > p:first-child {
+  display: table-caption;
+  font-weight: bold;
+  color: rgb(10, 110, 210);
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.jamal-key-value-pair { display: table-row; }
 
 .jamal-key,
 .jamal-value {
