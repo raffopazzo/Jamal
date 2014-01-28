@@ -186,6 +186,14 @@ public class Widget<T extends Widget> {
     return _this;
   }
 
+  public T setData(String name, String value) {
+    return setAttribute("data-" + name, value);
+  }
+
+  public T setData(String name, Enum value) {
+    return setAttribute("data-" + name, value);
+  }
+
   public T setId(String id) {
     return setAttribute(HTML_ID, id);
   }

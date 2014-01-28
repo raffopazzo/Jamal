@@ -35,6 +35,24 @@ public class WidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testSetDataAttribute() throws Exception { 
+    // setup
+    final String equivalentHtml = "<div data-dummy=\"value\" class=\"jamal-widget\"/>";
+    // exercise
+    _widget.setData("dummy", "value");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testSetDataAttributeFromDictionary() throws Exception { 
+    // setup
+    final String equivalentHtml = "<div data-dummy=\"LABEL_0\" class=\"jamal-widget\"/>";
+    // exercise
+    _widget.setData("dummy", FakeEnums.LABEL_0);
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testOverrideWidgetId() throws Exception { 
     // setup
     final String equivalentHtml= "<div id=\"dummy 2\" class=\"jamal-widget\"/>";
