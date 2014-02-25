@@ -88,6 +88,7 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_HEADER = "jamal-header";
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
+  static public final String JAMAL_CLASS_MARKDOWN = "jamal-markdown";
   static public final String JAMAL_CLASS_ROW = "jamal-row";
   static public final String JAMAL_CLASS_SELECTED = "jamal-selected";
   static public final String JAMAL_CLASS_TAB_WIDGET = "jamal-tab-widget";
@@ -341,6 +342,10 @@ public class Widget<T extends Widget> {
     return append(HTML_LI).setTextContent(text);
   }
 
+  public Widget markdown(String text) {
+    return append(new MarkDown(_i18n, text));
+  }
+
   public Widget optgroup(String label) {
     return append(HTML_OPTGROUP).setAttribute(HTML_LABEL, label);
   }
@@ -425,7 +430,7 @@ public class Widget<T extends Widget> {
     DocumentBuilder docBuilder = factory.newDocumentBuilder();
     Document document = docBuilder.newDocument();
     Node root = prepareDocument(document);
-    root.appendChild(render(document));
+    root.appendChild(render(docBuilder, document));
     return document;
   }
 
@@ -434,12 +439,12 @@ public class Widget<T extends Widget> {
     return document;
   }
 
-  protected Element render(Document document) {
+  protected Element render(DocumentBuilder docBuilder, Document document) {
     Element element = document.createElement(_tag);
     element.setTextContent(_textContent);
     renderAttributes(element);
     renderClassNames(element);
-    renderChildWidgets(document, element);
+    renderChildWidgets(docBuilder, document, element);
     return element;
   }
 
@@ -460,9 +465,11 @@ public class Widget<T extends Widget> {
     }
   }
 
-  private void renderChildWidgets(Document document, Element parent) {
+  private void renderChildWidgets(DocumentBuilder docBuilder,
+                                  Document document,
+                                  Element parent) {
     for (Widget w: _children) {
-      parent.appendChild(w.render(document)); 
+      parent.appendChild(w.render(docBuilder, document)); 
     }
   }
 

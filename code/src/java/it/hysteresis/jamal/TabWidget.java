@@ -15,6 +15,8 @@
 */
 package it.hysteresis.jamal;
 
+import javax.xml.parsers.DocumentBuilder;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -42,11 +44,11 @@ public class TabWidget extends Widget<TabWidget> {
     }
 
     @Override
-    protected Element render(Document document) {
+    protected Element render(DocumentBuilder docBuilder, Document document) {
       if (_selected) {
         addClassName(JAMAL_CLASS_SELECTED); 
       }
-      return super.render(document);
+      return super.render(docBuilder, document);
     }
   }
 
