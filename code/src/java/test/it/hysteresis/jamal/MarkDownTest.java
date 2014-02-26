@@ -32,7 +32,7 @@ public class MarkDownTest extends JamalTestCase {
   public void testSupportStrongText() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
-                                           "<p><strong>DUMMY</strong></p>"+
+                                           "<div><p><strong>DUMMY</strong></p></div>"+
                                            "</div>"); 
     // exercise
     _widget.markdown("**DUMMY**");
@@ -43,10 +43,28 @@ public class MarkDownTest extends JamalTestCase {
   public void testSupportItalicText() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
-                                           "<p><em>DUMMY</em></p>"+
+                                           "<div><p><em>DUMMY</em></p></div>"+
                                            "</div>"); 
     // exercise
     _widget.markdown("*DUMMY*");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void test() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
+                                           "<div><p><em>DUMMY</em></p></div>"+
+                                           "</div>"); 
+    // exercise
+    _widget.markdown("Assistant\n"+
+                     "===\n"+
+                     "\n"+
+                     "_Il programma pensato **appositamente** per gli intermediari assicurativi_\n"+
+                     "\n"+
+                     "* Scarico quietanzamento\n"+
+                     "* Gestione portafoglio\n"+
+                     "* Gestione attivit");
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

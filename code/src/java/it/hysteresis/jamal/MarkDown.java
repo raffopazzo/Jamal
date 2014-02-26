@@ -15,15 +15,16 @@
 */
 package it.hysteresis.jamal;
 
+import java.io.PrintWriter;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 
+import org.markdown4j.Markdown4jProcessor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
-
-import org.markdown4j.Markdown4jProcessor;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
@@ -41,12 +42,15 @@ public class MarkDown extends Widget<MarkDown> {
   protected Element render(DocumentBuilder docBuilder, Document document) {
     Element element = super.render(docBuilder, document);
     try {
-      String html = new Markdown4jProcessor().process(_text);
+      String html = "<div>" + new Markdown4jProcessor().process(_text) + "</div>";
       Element content = docBuilder.parse(new InputSource(new StringReader(html)))
                                   .getDocumentElement(); 
       element.appendChild(document.importNode(content, true));
     } catch (Throwable e) {
       /* Do nothing, leaving the markdown widget empty */
+      StringWriter s = new StringWriter();
+      e.printStackTrace(new PrintWriter(s));
+      element.setTextContent(s.toString());
     }
     return element;
   }
