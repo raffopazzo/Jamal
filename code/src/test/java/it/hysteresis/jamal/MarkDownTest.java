@@ -22,7 +22,7 @@ public class MarkDownTest extends JamalTestCase {
 
   public void testCreateEmptyMarkDown() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\"/>"); 
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\"/>"); 
     // exercise
     _widget.markdown("");
     // verify
@@ -31,8 +31,8 @@ public class MarkDownTest extends JamalTestCase {
 
   public void testSupportStrongText() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
-                                           "<div><p><strong>DUMMY</strong></p></div>"+
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\">"+
+                                           "<p><strong>DUMMY</strong></p>"+
                                            "</div>"); 
     // exercise
     _widget.markdown("**DUMMY**");
@@ -42,8 +42,8 @@ public class MarkDownTest extends JamalTestCase {
 
   public void testSupportItalicText() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
-                                           "<div><p><em>DUMMY</em></p></div>"+
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\">"+
+                                           "<p><em>DUMMY</em></p>"+
                                            "</div>"); 
     // exercise
     _widget.markdown("*DUMMY*");
@@ -51,20 +51,15 @@ public class MarkDownTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
-  public void test() throws Exception {
+  public void testWrapUpSiblings() throws Exception {
     // setup
-    final String equivalentHtml = wrapHtml("<div class=\"jamal-widget jamal-markdown\">"+
-                                           "<div><p><em>DUMMY</em></p></div>"+
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\">"+
+                                           "<h1>TITLE</h1><p>text</p>"+
                                            "</div>"); 
     // exercise
-    _widget.markdown("Assistant\n"+
+    _widget.markdown("TITLE\n"+
                      "===\n"+
-                     "\n"+
-                     "_Il programma pensato **appositamente** per gli intermediari assicurativi_\n"+
-                     "\n"+
-                     "* Scarico quietanzamento\n"+
-                     "* Gestione portafoglio\n"+
-                     "* Gestione attivit");
+                     "text");
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

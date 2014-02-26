@@ -65,6 +65,8 @@ public class JamalTestCase  extends TestCase {
   protected void assertEquvalentToHtml(String equivalentHtml, Widget widget)
   throws Exception {
     String actualHtml = widget.toString();
+    actualHtml = actualHtml.replaceAll("[\n\t]","");
+    equivalentHtml = equivalentHtml.replaceAll("[\n\t]","");
     Document expected = parseHtml(equivalentHtml);
     Document actual = parseHtml(actualHtml);
     if (! expected.isEqualNode(actual)) {
