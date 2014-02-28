@@ -346,6 +346,10 @@ public class Widget<T extends Widget> {
     return append(new MarkDown(_i18n, text));
   }
 
+  public Widget markdown(Enum text) {
+    return append(new MarkDown(_i18n, _i18n.getLabel(text)));
+  }
+
   public Widget optgroup(String label) {
     return append(HTML_OPTGROUP).setAttribute(HTML_LABEL, label);
   }
