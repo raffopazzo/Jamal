@@ -13,10 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package test.it.hysteresis.jamal;
-
-import it.hysteresis.jamal.Anchor;
-import it.hysteresis.jamal.Widget;
+package it.hysteresis.jamal;
 
 public class AnchorTest extends JamalTestCase {
 

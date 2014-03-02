@@ -13,10 +13,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package test.it.hysteresis.jamal;
-import it.hysteresis.jamal.GridWidget;
+package it.hysteresis.jamal;
+
 import it.hysteresis.jamal.GridWidget.GridRowWidget;
-import it.hysteresis.jamal.Widget;
 
 public class GridWidgetTest extends JamalTestCase {
 

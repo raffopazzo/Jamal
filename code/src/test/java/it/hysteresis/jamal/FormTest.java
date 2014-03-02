@@ -13,9 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package test.it.hysteresis.jamal;
-import it.hysteresis.jamal.Form;
-import it.hysteresis.jamal.Input;
+package it.hysteresis.jamal;
 
 public class FormTest extends JamalTestCase {
 

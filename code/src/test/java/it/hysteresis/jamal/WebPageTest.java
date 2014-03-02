@@ -13,10 +13,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package test.it.hysteresis.jamal;
+package it.hysteresis.jamal;
 
-import test.it.hysteresis.jamal.i18n.StubDictionary;
-import it.hysteresis.jamal.WebPage;
+import it.hysteresis.jamal.i18n.StubDictionary;
 
 public class WebPageTest extends JamalTestCase {
 

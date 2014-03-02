@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package test.it.hysteresis.jamal;
+package it.hysteresis.jamal;
 
 public class DetailsTest extends JamalTestCase {
 
