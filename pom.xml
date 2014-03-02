@@ -20,7 +20,7 @@
 
   <groupId>it.hysteresis</groupId>
   <artifactId>jamal</artifactId>
-  <version>0.4</version>
+  <version>0.5</version>
   <packaging>jar</packaging>
 
   <name>Jamal</name>
