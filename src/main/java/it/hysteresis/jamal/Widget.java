@@ -89,6 +89,7 @@ public class Widget<T extends Widget> {
   static public final String JAMAL_CLASS_LAYOUT_FLOW = "jamal-layout-flow";
   static public final String JAMAL_CLASS_LAYOUT_ITEM = "jamal-layout-item";
   static public final String JAMAL_CLASS_MARKDOWN = "jamal-markdown";
+  static public final String JAMAL_CLASS_RAW = "jamal-raw";
   static public final String JAMAL_CLASS_ROW = "jamal-row";
   static public final String JAMAL_CLASS_SELECTED = "jamal-selected";
   static public final String JAMAL_CLASS_TAB_WIDGET = "jamal-tab-widget";
@@ -377,6 +378,10 @@ public class Widget<T extends Widget> {
 
   public Widget pre(String text) {
     return append(HTML_PRE).setTextContent(text);
+  }
+
+  public Widget raw(String text) {
+    return append(new RawHtmlWidget(_i18n, text));
   }
 
   public Widget select(String name) {
