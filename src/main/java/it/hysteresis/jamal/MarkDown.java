@@ -28,27 +28,16 @@ import org.xml.sax.InputSource;
 
 import it.hysteresis.jamal.i18n.Dictionary;
 
-public class MarkDown extends Div {
-
-  private String _text;
+public class MarkDown extends RawHtmlWidget {
 
   public MarkDown(Dictionary dictionary, String text) {
-    super(dictionary);
-    _text = text;
-  }
-
-  @Override
-  protected Element render(DocumentBuilder docBuilder, Document document) {
-    try {
-      String html = "<div class=\"" + JAMAL_CLASS_MARKDOWN + "\">" +
-                    new Markdown4jProcessor().process(_text) + "</div>";
-      Element content = docBuilder.parse(new InputSource(new StringReader(html)))
-                                  .getDocumentElement(); 
-      return (Element)document.importNode(content, true);
+    super(dictionary, "");
+    try { 
+      _text = new Markdown4jProcessor().process(text);
     } catch (Throwable e) {
-      /* Do nothing, leaving the markdown widget empty */
-      return super.render(docBuilder, document);
+      /* Do nothing leaving the markwodn widget empty */
     }
+    _className = JAMAL_CLASS_MARKDOWN;
   }
 
 }

@@ -1,7 +1,7 @@
 apply plugin: "java"
 apply plugin: "cobertura"
 
-version = "v0.5"
+version = "v0.6"
 
 repositories {
   mavenCentral()
@@ -24,4 +24,12 @@ buildscript {
    dependencies {
        classpath "net.saliman:gradle-cobertura-plugin:2.2.4"
    }
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
