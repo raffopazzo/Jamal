@@ -252,7 +252,8 @@ public class Widget<T extends Widget> {
   }
 
   public Anchor button(String href, String text) {
-    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON);
+    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON)
+                           .setTitle(text);
     button.div().addClassName(JAMAL_CLASS_BUTTON_ICON);
     button.div().addClassName(JAMAL_CLASS_BUTTON_TEXT)
                 .setTextContent(text);
@@ -260,7 +261,8 @@ public class Widget<T extends Widget> {
   }
 
   public Anchor button(String href, String icon, String text) {
-    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON);
+    Anchor button = a(href).addClassName(JAMAL_CLASS_BUTTON)
+                           .setTitle(text);
     button.div().addClassName(JAMAL_CLASS_BUTTON_ICON)
                 .setTextContent(icon);
     button.div().addClassName(JAMAL_CLASS_BUTTON_TEXT)

@@ -61,7 +61,8 @@ public class ButtonTest extends JamalTestCase {
   public void testCreateButtonWithText() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<a href=\"#\""+
-                                           "   class=\"jamal-button\">"+
+                                           "   class=\"jamal-button\""+
+                                           "   title=\"dummy\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "dummy"+
@@ -76,7 +77,8 @@ public class ButtonTest extends JamalTestCase {
   public void testCreateButtonWithTextAndIcon() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<a href=\"#\""+
-                                           "   class=\"jamal-button\">"+
+                                           "   class=\"jamal-button\""+
+                                           "   title=\"dummy\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "+"+
                                            "</div>"+
@@ -93,7 +95,8 @@ public class ButtonTest extends JamalTestCase {
   public void testRetrieveButtonTextFromDictionary() throws Exception { 
     // setup
     final String equivalentHtml = wrapHtml("<a href=\"#\""+
-                                           "   class=\"jamal-button\">"+
+                                           "   class=\"jamal-button\""+
+                                           "   title=\"LABEL_0\">"+
                                            "<div class=\"jamal-button-icon\"/>"+
                                            "<div class=\"jamal-button-text\">"+
                                            "LABEL_0"+
@@ -108,7 +111,8 @@ public class ButtonTest extends JamalTestCase {
   public void testRetrieveButtonTextAndIconFromDictionary() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<a href=\"#\""+
-                                           "   class=\"jamal-button\">"+
+                                           "   class=\"jamal-button\""+
+                                           "   title=\"LABEL_1\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "LABEL_0"+
                                            "</div>"+
@@ -125,7 +129,8 @@ public class ButtonTest extends JamalTestCase {
   public void testRetrieveButtonIconFromDictionary() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<a href=\"#\""+
-                                           "   class=\"jamal-button\">"+
+                                           "   class=\"jamal-button\""+
+                                           "   title=\"dummy\">"+
                                            "<div class=\"jamal-button-icon\">"+
                                            "LABEL_0"+
                                            "</div>"+
