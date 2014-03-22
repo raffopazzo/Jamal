@@ -23,6 +23,7 @@ public class Input extends Widget<Input> {
     checkbox,
     date,
     email,
+    file,
     hidden,
     number,
     password,

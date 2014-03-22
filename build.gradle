@@ -1,7 +1,7 @@
 apply plugin: "java"
 apply plugin: "cobertura"
 
-version = "v0.7"
+version = "v0.7.1"
 
 repositories {
   mavenCentral()
