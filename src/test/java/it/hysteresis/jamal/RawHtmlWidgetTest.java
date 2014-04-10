@@ -26,6 +26,15 @@ public class RawHtmlWidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testAddCustomClass() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-raw dummy\"/>"); 
+    // exercise
+    _widget.raw("").addClassName("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testCreateRawHtmlWidget() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-raw\">"+

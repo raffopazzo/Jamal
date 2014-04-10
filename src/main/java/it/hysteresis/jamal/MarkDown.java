@@ -37,7 +37,8 @@ public class MarkDown extends RawHtmlWidget {
     } catch (Throwable e) {
       /* Do nothing leaving the markwodn widget empty */
     }
-    _className = JAMAL_CLASS_MARKDOWN;
+    _classNames.clear();
+    addClassName(JAMAL_CLASS_MARKDOWN);
   }
 
 }

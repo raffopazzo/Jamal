@@ -31,19 +31,18 @@ import it.hysteresis.jamal.i18n.Dictionary;
 public class RawHtmlWidget extends Div {
 
   protected String _text;
-  protected String _className;
 
   public RawHtmlWidget(Dictionary dictionary, String text) {
     super(dictionary);
     _text = text;
-    _className = JAMAL_CLASS_RAW;
+    addClassName(JAMAL_CLASS_RAW);
   }
 
   @Override
   protected Element render(DocumentBuilder docBuilder, Document document) {
     try {
       String html = String.format("<div class=\"%s\">%s</div>",
-                                  _className,
+                                  renderClassNames(),
                                   _text);
       Element content = docBuilder.parse(new InputSource(new StringReader(html)))
                                   .getDocumentElement(); 

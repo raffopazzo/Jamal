@@ -26,6 +26,15 @@ public class MarkDownTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testAddCustomClassName() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown dummy\"/>"); 
+    // exercise
+    _widget.markdown("").addClassName("dummy");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testSupportStrongText() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\">"+

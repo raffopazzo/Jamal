@@ -454,25 +454,29 @@ public class Widget<T extends Widget> {
     Element element = document.createElement(_tag);
     element.setTextContent(_textContent);
     renderAttributes(element);
-    renderClassNames(element);
+    String clazz = renderClassNames();
+    if (clazz != null) {
+      element.setAttribute(HTML_CLASS, renderClassNames()); 
+    }
     renderChildWidgets(docBuilder, document, element);
     return element;
   }
 
-  private void renderAttributes(Element element) {
-    for (Map.Entry<String, String> a: _attributes.entrySet()) {
-      element.setAttribute(a.getKey(), a.getValue());
-    }
-  }
-
-  private void renderClassNames(Element element) {
+  protected String renderClassNames() {
     Iterator<String> it = _classNames.iterator();
     if (it.hasNext()) {
       String clazz = it.next();
       while (it.hasNext()) {
         clazz += " " + it.next();
       }
-      element.setAttribute(HTML_CLASS, clazz);
+      return clazz;
+    }
+    return null;
+  }
+
+  private void renderAttributes(Element element) {
+    for (Map.Entry<String, String> a: _attributes.entrySet()) {
+      element.setAttribute(a.getKey(), a.getValue());
     }
   }
 
