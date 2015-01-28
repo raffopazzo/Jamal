@@ -71,6 +71,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_OPTION_SELECTED = "selected";
   static public final String HTML_P = "p";
   static public final String HTML_PRE = "pre";
+  static public final String HTML_PROGRESS = "progress";
   static public final String HTML_SELECT = "select";
   static public final String HTML_SUMMARY = "summary";
   static public final String HTML_TEXTAREA = "textarea";
@@ -380,6 +381,16 @@ public class Widget<T extends Widget> {
 
   public Widget pre(String text) {
     return append(HTML_PRE).setTextContent(text);
+  }
+
+  public Widget progress(int value, int max) {
+    return append(HTML_PROGRESS).setAttribute(HTML_INPUT_VALUE, value)
+                                .setAttribute(HTML_INPUT_MAX,   max);
+  }
+
+  public <T extends Enum> Widget progress(T value, T max) {
+    return append(HTML_PROGRESS).setAttribute(HTML_INPUT_VALUE, value.ordinal())
+                                .setAttribute(HTML_INPUT_MAX,   max.ordinal());
   }
 
   public Widget raw(String text) {
