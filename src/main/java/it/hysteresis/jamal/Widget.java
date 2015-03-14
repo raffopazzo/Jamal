@@ -51,8 +51,8 @@ public class Widget<T extends Widget> {
   static public final String HTML_FORM = "form";
   static public final String HTML_FORM_ACTION = "action";
   static public final String HTML_FORM_METHOD = "method";
+  static public final String HTML_IFRAME = "iframe";
   static public final String HTML_IMG = "img";
-  static public final String HTML_IMG_SRC = "src";
   static public final String HTML_INPUT = "input";
   static public final String HTML_INPUT_CHECKED = "checked";
   static public final String HTML_INPUT_MAX = "max";
@@ -73,6 +73,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_PRE = "pre";
   static public final String HTML_PROGRESS = "progress";
   static public final String HTML_SELECT = "select";
+  static public final String HTML_SRC = "src";
   static public final String HTML_SUMMARY = "summary";
   static public final String HTML_TEXTAREA = "textarea";
   static public final String HTML_TITLE = "title";
@@ -309,8 +310,12 @@ public class Widget<T extends Widget> {
     return append(new Form(_i18n)).setMethod(Form.Method.post);
   }
 
+  public Widget iframe(String src) {
+    return append(HTML_IFRAME).setAttribute(HTML_SRC, src);
+  }
+
   public Widget img(String src) {
-    return append(HTML_IMG).setAttribute(HTML_IMG_SRC, src);
+    return append(HTML_IMG).setAttribute(HTML_SRC, src);
   }
 
   public GridWidget grid() {
