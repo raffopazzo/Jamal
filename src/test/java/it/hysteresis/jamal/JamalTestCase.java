@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package it.hysteresis.jamal;
+package io.jamal;
 
 import java.io.StringReader;
 
@@ -23,7 +23,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import it.hysteresis.jamal.i18n.StubDictionary;
+import io.jamal.i18n.StubDictionary;
 
 import junit.framework.TestCase; 
 

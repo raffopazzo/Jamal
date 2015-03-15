@@ -13,14 +13,14 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-package it.hysteresis.jamal;
+package io.jamal;
 
 import javax.xml.parsers.DocumentBuilder;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import it.hysteresis.jamal.i18n.Dictionary;
+import io.jamal.i18n.Dictionary;
 
 public class TabWidget extends Widget<TabWidget> {
 

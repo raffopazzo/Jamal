@@ -14,7 +14,7 @@ dependencies {
 }
 
 test {
-  exclude "it/hysteresis/jamal/JamalTestCase.class"
+  exclude "io/jamal/JamalTestCase.class"
 }
 
 buildscript {

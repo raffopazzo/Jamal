@@ -1,4 +1,4 @@
-import it.hysteresis.jamal.WebPage;
+import io.jamal.WebPage;
 
 public class ExampleWebPage extends WebPage {
 
