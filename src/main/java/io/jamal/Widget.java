@@ -406,6 +406,11 @@ public class Widget<T extends Widget> {
     return append(HTML_SELECT).setAttribute(HTML_INPUT_NAME, name);
   }
 
+  public Input submitImage(String href) {
+    return append(new Input(_i18n)).setType(Input.Type.image)
+                                   .setAttribute(HTML_SRC, href);
+  }
+
   public Input submit() {
     return append(new Input(_i18n)).setType(Input.Type.submit);
   }

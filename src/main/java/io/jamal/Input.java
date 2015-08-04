@@ -25,6 +25,7 @@ public class Input extends Widget<Input> {
     email,
     file,
     hidden,
+    image,
     number,
     password,
     submit,
