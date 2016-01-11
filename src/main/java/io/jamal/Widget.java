@@ -55,6 +55,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_IMG = "img";
   static public final String HTML_INPUT = "input";
   static public final String HTML_INPUT_CHECKED = "checked";
+  static public final String HTML_INPUT_DISABLED = "disabled";
   static public final String HTML_INPUT_MAX = "max";
   static public final String HTML_INPUT_MIN = "min";
   static public final String HTML_INPUT_NAME = "name";

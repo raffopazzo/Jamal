@@ -41,6 +41,10 @@ public class Input extends Widget<Input> {
     return setAttribute(HTML_INPUT_CHECKED, checked);
   }
 
+  public Input setDisabled(boolean disabled) {
+    return setAttribute(HTML_INPUT_DISABLED, disabled);
+  }
+
   public Input setMax(int max) {
     return setAttribute(HTML_INPUT_MAX, max);
   }
