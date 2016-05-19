@@ -1,7 +1,18 @@
 apply plugin: "java"
 apply plugin: "cobertura"
+apply plugin: "maven-publish"
 
-version = "v0.7.1"
+def getVersion = { ->
+  def out = new ByteArrayOutputStream()
+  exec {
+    commandLine "git", "describe", "--tags"
+    standardOutput = out
+  }
+  return out.toString().trim()
+}
+
+group = "io.jamal"
+version = getVersion();
 
 repositories {
   mavenCentral()
@@ -31,5 +42,21 @@ allprojects {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
         }
+    }
+}
+task cssZip(type: Zip) {
+  from 'src/main/css'
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact cssZip {
+              classifier "css"
+            }
+        }
+    }
+    repositories {
+      mavenLocal()
     }
 }
