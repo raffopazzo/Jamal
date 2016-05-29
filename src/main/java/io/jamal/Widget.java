@@ -34,6 +34,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import io.jamal.Form.Method;
+import io.jamal.Input.Type;
 import io.jamal.i18n.Dictionary;
 
 public class Widget<T extends Widget> {
@@ -321,6 +322,10 @@ public class Widget<T extends Widget> {
 
   public GridWidget grid() {
     return append(new GridWidget(_i18n));
+  }
+
+  public Input checkbox(String name) {
+    return input(Input.Type.checkbox, name);
   }
 
   public Input input(Input.Type type, String name) {
