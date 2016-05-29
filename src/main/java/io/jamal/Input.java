@@ -77,6 +77,10 @@ public class Input extends Widget<Input> {
     return setAttribute(HTML_INPUT_TYPE, type.toString());
   }
 
+  public Input setValue(int value) {
+    return setAttribute(HTML_INPUT_VALUE, value);
+  }
+
   public Input setValue(String value) {
     return setAttribute(HTML_INPUT_VALUE, value);
   }
