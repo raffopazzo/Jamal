@@ -58,13 +58,15 @@ public class WebPage extends Widget<WebPage> {
   private String _title;
   private HashMap<String, String> _metas;
   private LinkedList<String> _scripts;
+  private LinkedList<String> _embeddedScripts;
   private LinkedList<String> _css;
 
   public WebPage(Dictionary dictionary) {
     super(dictionary, HTML_BODY);
-    _metas = new HashMap<String, String>();
-    _scripts = new LinkedList<String>();
-    _css = new LinkedList<String>();
+    _metas = new HashMap<>();
+    _scripts = new LinkedList<>();
+    _embeddedScripts = new LinkedList<>();
+    _css = new LinkedList<>();
   }
 
   public WebPage() {
@@ -73,14 +75,14 @@ public class WebPage extends Widget<WebPage> {
 
   @Override
   protected Node prepareDocument(Document document) {
-    Element root = (Element)document.appendChild(document.createElementNS(XHTML_NAMESPACE,
-                                                                          HTML));
+    final Element root = document.createElementNS(XHTML_NAMESPACE, HTML);
     root.appendChild(renderDocumentHead(document));
+    document.appendChild(root);
     return root;
   }
 
   private Element renderDocumentHead(Document document) {
-    Element head = document.createElement(HTML_HEAD);
+    final Element head = document.createElement(HTML_HEAD);
     if (_title != null) {
       head.appendChild(renderTitle(document));
     }
@@ -91,32 +93,41 @@ public class WebPage extends Widget<WebPage> {
   }
 
   private Element renderTitle(Document document) {
-    Element title = document.createElement(HTML_TITLE);
+    final Element title = document.createElement(HTML_TITLE);
     title.setTextContent(_title);
     return title;
   }
 
   private void renderMetas(Document doc, Element head) {
     for (Map.Entry<String,String> m: _metas.entrySet()) {
-      Element meta = (Element)head.appendChild(doc.createElement(HTML_META));
+      final Element meta = doc.createElement(HTML_META);
       meta.setAttribute(HTML_META_NAME, m.getKey());
       meta.setAttribute(HTML_META_CONTENT, m.getValue());
+      head.appendChild(meta);
     }
   }
 
   private void renderScripts(Document doc, Element head) {
     for (String s: _scripts) {
-      Element script= (Element)head.appendChild(doc.createElement(HTML_SCRIPT));
+      final Element script = doc.createElement(HTML_SCRIPT);
       script.setAttribute(HTML_SCRIPT_SRC, s);
+      head.appendChild(script);
+      script.setAttribute(HTML_SCRIPT_SRC, s);
+    }
+    for (String s: _embeddedScripts) {
+      final Element script = doc.createElement(HTML_SCRIPT);
+      script.setTextContent(s);
+      head.appendChild(script);
     }
   }
 
   private void renderCss(Document doc, Element head) {
     for (String s: _css) {
-      Element link = (Element)head.appendChild(doc.createElement(HTML_LINK));
+      final Element link = doc.createElement(HTML_LINK);
       link.setAttribute(HTML_LINK_REL, HTML_LINK_REL_STYLESHEET);
       link.setAttribute(HTML_LINK_TYPE, MIME_CSS);
       link.setAttribute(HTML_LINK_HREF, s);
+      head.appendChild(link);
     }
   }
 
@@ -137,6 +148,11 @@ public class WebPage extends Widget<WebPage> {
 
   public WebPage addScript(String url) {
     _scripts.add(url);
+    return this;
+  }
+
+  public WebPage embedScript(String script) {
+    _embeddedScripts.add(script);
     return this;
   }
 

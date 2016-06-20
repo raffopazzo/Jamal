@@ -97,7 +97,17 @@ public class WebPageTest extends JamalTestCase {
     // verify
     assertEquvalentToHtml(equivalentHtml, actual);
   }
-
+  public void testEmbedScript() throws Exception {
+    // setup
+    final String equivalentHtml = html("<head>"+
+                                       "<script>alert('Hello World');</script>"+
+                                       "</head>"+
+                                       "<body/>");
+    // exercise
+    WebPage actual = new WebPage().embedScript("alert('Hello World');");
+    // verify
+    assertEquvalentToHtml(equivalentHtml, actual);
+  }
   public void testAddCssLink() throws Exception {
     // setup
     final String equivalentHtml = html("<head>"+
