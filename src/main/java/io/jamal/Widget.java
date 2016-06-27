@@ -354,7 +354,7 @@ public class Widget<T extends Widget> {
   }
 
   public Widget li(String text) {
-    return append(HTML_LI).setTextContent(text);
+    return append(new ListItem(_i18n)).setTextContent(text);
   }
 
   public Widget markdown(String text) {
@@ -438,7 +438,7 @@ public class Widget<T extends Widget> {
   }
 
   public Widget ul() {
-    return append(HTML_UL);
+    return append(new UnorderedList(_i18n)); 
   }
 
   @Override
