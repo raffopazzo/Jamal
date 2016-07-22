@@ -52,6 +52,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_FORM = "form";
   static public final String HTML_FORM_ACTION = "action";
   static public final String HTML_FORM_METHOD = "method";
+  static public final String HTML_HR = "hr";
   static public final String HTML_IFRAME = "iframe";
   static public final String HTML_IMG = "img";
   static public final String HTML_INPUT = "input";
@@ -328,6 +329,10 @@ public class Widget<T extends Widget> {
     return input(Input.Type.checkbox, name);
   }
 
+  public Widget hr() {
+    append(new Widget(_i18n, HTML_HR));
+    return this;
+  }
   public Input input(Input.Type type, String name) {
     return append(new Input(_i18n)).setType(type).setName(name);
   }
