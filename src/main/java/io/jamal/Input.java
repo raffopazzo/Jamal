@@ -28,6 +28,7 @@ public class Input extends Widget<Input> {
     image,
     number,
     password,
+    radio,
     submit,
     text,
     time;
