@@ -76,6 +76,7 @@ public class Widget<T extends Widget> {
   static public final String HTML_PRE = "pre";
   static public final String HTML_PROGRESS = "progress";
   static public final String HTML_SELECT = "select";
+  static public final String HTML_SPAN = "span";
   static public final String HTML_SRC = "src";
   static public final String HTML_SUMMARY = "summary";
   static public final String HTML_TEXTAREA = "textarea";
@@ -415,6 +416,14 @@ public class Widget<T extends Widget> {
 
   public Widget select(String name) {
     return append(HTML_SELECT).setAttribute(HTML_INPUT_NAME, name);
+  }
+
+  public Widget span(String text) {
+    return append(HTML_SPAN).setTextContent(text);
+  }
+
+  public Widget span(Enum text) {
+    return span(_i18n.getLabel(text));
   }
 
   public Input submitImage(String href) {
