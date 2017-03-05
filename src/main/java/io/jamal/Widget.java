@@ -302,6 +302,12 @@ public class Widget<T extends Widget> {
     return details(_i18n.getLabel(summary));
   }
 
+  public Details details(final Widget summary) {
+    final Details details = details();
+    details.append(HTML_SUMMARY).append(summary);
+    return details;
+  }
+
   public Div div() {
     return append(new Div(_i18n));
   }
