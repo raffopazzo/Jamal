@@ -26,6 +26,16 @@ public class MarkDownTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testCanSetAttributes() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div id=\"test\""+
+                                           " class=\"jamal-markdown\"/>");
+    // exercise
+    _widget.markdown("").setId("test");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testAddCustomClassName() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown dummy\"/>"); 
@@ -66,6 +76,20 @@ public class MarkDownTest extends JamalTestCase {
     _widget.markdown("TITLE\n"+
                      "===\n"+
                      "text");
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
+  public void testCanHaveChildren() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml("<div class=\"jamal-markdown\">"+
+                                           "<div><p>Hello</p></div>"+
+                                           "<div><p>World</p></div>"+
+                                           "</div>");
+    // exercise
+    final Widget m = _widget.markdown("");
+    m.div().p("Hello");
+    m.div().p("World");
     // verify
     assertEquvalentToHtml(equivalentHtml);
   }

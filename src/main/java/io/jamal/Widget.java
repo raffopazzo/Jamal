@@ -521,15 +521,15 @@ public class Widget<T extends Widget> {
     return null;
   }
 
-  private void renderAttributes(Element element) {
+  protected void renderAttributes(Element element) {
     for (Map.Entry<String, String> a: _attributes.entrySet()) {
       element.setAttribute(a.getKey(), a.getValue());
     }
   }
 
-  private void renderChildWidgets(DocumentBuilder docBuilder,
-                                  Document document,
-                                  Element parent) {
+  protected void renderChildWidgets(DocumentBuilder docBuilder,
+                                    Document document,
+                                    Element parent) {
     for (Widget w: _children) {
       parent.appendChild(w.render(docBuilder, document)); 
     }

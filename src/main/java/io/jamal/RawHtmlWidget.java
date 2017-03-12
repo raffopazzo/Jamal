@@ -46,7 +46,10 @@ public class RawHtmlWidget extends Div {
                                   _text);
       Element content = docBuilder.parse(new InputSource(new StringReader(html)))
                                   .getDocumentElement(); 
-      return (Element)document.importNode(content, true);
+      final Element element = (Element)document.importNode(content, true);
+      renderAttributes(element);
+      renderChildWidgets(docBuilder, document, element);
+      return element;
     } catch (Throwable e) {
       /* Do nothing, leaving the widget empty */
       return super.render(docBuilder, document);
