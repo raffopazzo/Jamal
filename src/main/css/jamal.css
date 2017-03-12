@@ -125,24 +125,16 @@
 }
 
 /* TabWidget */
-.jamal-tab-widget {
-
-}
-
 .jamal-tab {
   display: inline-block;
-  padding: 5px 10px;
-  border: 1px solid #d0d8df;
-  border-bottom: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  box-shadow: 2px 0 3px #d0d8df;
+  background: #f0f8ff;
+  border: none;
+  border-radius: 0;
+  padding: 1em;
+  font-size: 1.25em;
+  box-shadow: none;
 }
-
-.jamal-tab:hover { background: #f0f8ff; }
-.jamal-tab.jamal-selected { background: #f0f8ff; }
-
-.jamal-tab-container {
-  border: 1px solid #d0d8df;
-  padding: 0.25em;
+.jamal-tab.jamal-selected {
+  background: none;
+  border-top: 3px solid rgb(10,110,210);
 }
