@@ -157,6 +157,15 @@ public class Widget<T extends Widget> {
     return widget;
   }
 
+  public <W extends Widget<? extends Widget>> W prepend(W widget) {
+    if (widget._parent != null) {
+      widget._parent._children.remove(widget);
+    }
+    widget._parent = this;
+    _children.addFirst(widget);
+    return widget;
+  }
+
   public T addClassName(String clazz) {
     _classNames.add(clazz);
     return _this;

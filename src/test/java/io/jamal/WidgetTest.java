@@ -230,6 +230,19 @@ public class WidgetTest extends JamalTestCase {
     assertEquvalentToHtml(equivalentHtml);
   }
 
+  public void testPrependChildWidgetToParent() throws Exception {
+    // setup
+    final String equivalentHtml = wrapHtml(
+      "<div class=\"widget-2\"/>"+
+      "<div class=\"widget-1\"/>"
+    );
+    // exercise
+    _widget.div().addClassName("widget-1");
+    _widget.prepend(_widget.div().addClassName("widget-2"));
+    // verify
+    assertEquvalentToHtml(equivalentHtml);
+  }
+
   public void testPropagateDictionaryToChildWidget() throws Exception {
     // setup
     final String equivalentHtml = wrapHtml("<div class=\"jamal-widget\">"+
