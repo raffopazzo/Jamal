@@ -17,6 +17,7 @@ package io.jamal.i18n;
 
 public interface Dictionary {
   public Text getText(Enum phrase);
+  public Text getText(String phrase);
   public String getLabel(String key);
   public String getLabel(Boolean value);
   public String getLabel(Enum enumValue);

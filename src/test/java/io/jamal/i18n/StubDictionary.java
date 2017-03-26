@@ -22,6 +22,11 @@ public class StubDictionary implements Dictionary {
   }
 
   @Override
+  public Text getText(String phrase) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public String getLabel(String key) {
     throw new UnsupportedOperationException(); 
   }

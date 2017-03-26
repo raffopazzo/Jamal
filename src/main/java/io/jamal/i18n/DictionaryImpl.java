@@ -44,7 +44,12 @@ public class DictionaryImpl implements Dictionary {
 
   @Override
   public Text getText(Enum phrase) {
-    return new Text( getLabel(phrase), _dateFormat );
+    return new Text(getLabel(phrase), _dateFormat);
+  }
+
+  @Override
+  public Text getText(String phrase) {
+    return new Text(getLabel(phrase), _dateFormat);
   }
 
   @Override
