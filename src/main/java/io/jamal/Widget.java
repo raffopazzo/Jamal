@@ -346,9 +346,9 @@ public class Widget<T extends Widget> {
   }
 
   public Widget hr() {
-    append(new Widget(_i18n, HTML_HR));
-    return this;
+    return append(new Widget(_i18n, HTML_HR));
   }
+
   public Input input(Input.Type type, String name) {
     return append(new Input(_i18n)).setType(type).setName(name);
   }
